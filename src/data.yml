@@ -1,0 +1,18 @@
+# 全站資訊
+site:
+  url: "http://localhost:3000"
+  name: "site-name"
+  title: "site-title"
+  keywords: "site-keywords"
+  description: "site-description"
+
+# fb 專用
+og:
+  type: "website"
+  image: "http://localhost:3000/images/og-image.png"
+fb:
+  admins: "612130717"
+  app_id: ""
+
+# ga code
+ga_code: ""
