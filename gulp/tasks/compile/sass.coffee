@@ -1,5 +1,6 @@
 { gulp, $, src, dest } = require 'gulp-config'
 bs = require 'browser-sync'
+autoprefixer = require 'autoprefixer'
 
 gulp.task 'sass', ->
   gulp.src("#{src.sass}*.sass")
@@ -13,7 +14,9 @@ gulp.task 'sass', ->
         './node_modules/normalize.css'
       ]
     })
-    .pipe $.autoprefixer()
+    .pipe $.postcss([
+      autoprefixer({browsers: ['last 1 version', 'ie 10', '> 1%']})
+    ])
     .pipe $.sourcemaps.write('.')
     .pipe gulp.dest(dest.style)
     .pipe bs.stream()
