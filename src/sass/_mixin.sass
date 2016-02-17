@@ -1,0 +1,85 @@
+=xx($opacity: .2)
+  outline: 1px solid rgba(red, $opacity)
+
+=input-placeholder-color($color)
+  &::-webkit-input-placeholder
+    color: $color
+    -webkit-font-smoothing: antialiased
+
+  &:-moz-placeholder
+    color: $color
+
+  &::-moz-placeholder
+    color: lighten($color, 10%)
+
+  &:-ms-input-placeholder
+    color: $color
+
+=reset-box-model
+  margin: 0
+  padding: 0
+  border: 0
+
+=link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false)
+  color: $normal
+  @if $visited
+    &:visited
+      color: $visited
+  @if $focus
+    &:focus
+      color: $focus
+  @if $hover
+    &:hover
+      color: $hover
+  @if $active
+    &:active
+      color: $active
+
+=hover-link
+  text-decoration: none
+  &:hover, &:focus
+    text-decoration: underline
+
+=pie-clearfix
+  &:after
+    content: ''
+    display: table
+    clear: both
+
+// tmp ----------------------------
+
+=at-breakpoint($break-point)
+  @content
+
+=container($a, $b, $c)
+  +xx(0)
+
+=replace-text-with-svg($image-name)
+  +xx(0)
+
+=replace-text-with-scalable-svg($image-name, $support-ie8: none, $element: none)
+  +xx(0)
+
+=establish-baseline
+  +xx(0)
+
+// vertical rhythm ----------------------------
+
+@function rhythm($float)
+  @return 0
+
+=baseline-grid-background($line-height: 24px)
+  background-image: linear-gradient(to top, rgba(0, 154, 142, 0.3) 5%, rgba(0, 154, 142, 0) 5%)
+  background-size: 100% $line-height
+
+=susy-grid-background
+  +xx(0)
+
+=trailer($float)
+  +xx(0)
+
+=leader($float)
+  +xx(0)
+
+=adjust-font-size-to($a: 0, $b: 0)
+  +xx(0)

@@ -1,0 +1,24 @@
+body
+  @extend %helvetica
+  -webkit-text-size-adjust: 100%
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+  color: $text-color
+
+img
+  max-width: 100%
+  +trailer(1)
+
+p
+  +leader(0)
+  +trailer(1)
+  +adjust-font-size-to(16px)
+
+a
+  +link-colors($link-color, $link-color-hover)
+  +hover-link
+  img
+    border: none
+
+.break-all
+  word-break: break-all
