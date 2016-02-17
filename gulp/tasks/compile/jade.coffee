@@ -1,11 +1,14 @@
 { gulp, $, basePath, src, dest } = require 'gulp-config'
 
+assign = require 'lodash/assign'
 fs = require 'fs'
 yaml = require 'js-yaml'
+helper = require './jade_helper'
+
 
 gulp.task 'jade', ->
   data = yaml.safeLoad(fs.readFileSync("#{basePath.src}data.yml", 'utf-8'))
-  data.test = (int) -> "hello #{int}"
+  data = assign(data, helper)
 
   gulp.src(["#{src.page}**/*.jade", "!#{src.page}**/_*.jade"])
     .pipe $.plumber()
