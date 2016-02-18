@@ -1,4 +1,4 @@
 xx = require './util/_xx'
 require './util/_util-name'
 
-xx 'a'
+xx breakpoints

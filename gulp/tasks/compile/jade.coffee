@@ -1,4 +1,4 @@
-{ gulp, $, basePath, src, dest, data } = require 'gulp-config'
+{ gulp, $, basePath, src, dest, data, sharedConfig } = require 'gulp-config'
 
 assign = require 'lodash/assign'
 helper = require './jade_helper'
@@ -8,7 +8,7 @@ gulp.task 'compile:jade', ->
     .pipe $.plumber()
     .pipe $.jade({
         pretty: true
-        data: assign(data, helper)
+        data: assign(data, sharedConfig, helper)
         basedir: "#{global.process.env.INIT_CWD}/#{basePath.src}/jade"
       })
     .pipe gulp.dest(dest.pages)
