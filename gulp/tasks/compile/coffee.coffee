@@ -11,7 +11,12 @@ gulp.task 'compile:coffee', (cb) ->
     cb(err) if err
 
     tasks = files.map (entry) ->
-      browserify({ entries: [entry], transform: ['coffeeify'], extensions: ['.coffee'] })
+      browserify(
+          entries: [entry]
+          transform: ['coffeeify']
+          extensions: ['.coffee']
+          debug: true
+        )
         .bundle()
         .on 'error', (err) ->
           console.log(err.toString())
