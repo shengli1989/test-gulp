@@ -6,7 +6,7 @@ yaml = require 'js-yaml'
 helper = require './jade_helper'
 
 
-gulp.task 'jade', ->
+gulp.task 'compile:jade', ->
   data = yaml.safeLoad(fs.readFileSync("#{basePath.src}data.yml", 'utf-8'))
   data = assign(data, helper)
 

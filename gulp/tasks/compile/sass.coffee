@@ -1,7 +1,7 @@
 { gulp, $, src, dest } = require 'gulp-config'
 bs = require 'browser-sync'
 
-gulp.task 'sass', ->
+gulp.task 'compile:sass', ->
   gulp.src("#{src.style}*.sass")
     .pipe $.plumber()
     .pipe $.sourcemaps.init()

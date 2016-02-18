@@ -6,7 +6,7 @@ source     = require 'vinyl-source-stream'
 glob       = require 'glob'
 es         = require 'event-stream'
 
-gulp.task 'coffee', (cb) ->
+gulp.task 'compile:coffee', (cb) ->
   glob "#{src.scripts}!(_*).coffee", (err, files) ->
     cb(err) if err
 
