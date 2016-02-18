@@ -2,8 +2,8 @@
 del = require 'del'
 
 gulp.task 'minify:css', ->
-  gulp.src("#{dest.style}*.css")
+  gulp.src("#{dest.styles}*.css")
     .pipe $.cssnano({discardComments: {removeAll: true}})
-    .pipe gulp.dest(dest.style)
+    .pipe gulp.dest(dest.styles)
 
-  del("#{dest.style}*.css.map")
+  del("#{dest.styles}*.css.map")

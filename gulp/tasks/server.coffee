@@ -13,5 +13,5 @@ gulp.task 'dev-server', ->
     reloadOnRestart: true
 
   gulp.watch ["#{basePath.src}**/*.jade", "#{basePath.src}data.yml"], -> runSequence('compile:jade', reload)
-  gulp.watch "#{src.style}**/*.{sass,scss}", ['compile:sass']
+  gulp.watch "#{src.styles}**/*.{sass,scss}", ['compile:sass']
   gulp.watch "#{src.scripts}**/*", -> runSequence('compile:coffee', reload)
