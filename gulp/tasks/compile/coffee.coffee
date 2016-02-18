@@ -13,6 +13,9 @@ gulp.task 'coffee', (cb) ->
     tasks = files.map (entry) ->
       browserify({ entries: [entry], transform: ['coffeeify'], extensions: ['.coffee'] })
         .bundle()
+        .on 'error', (err) ->
+          console.log(err.toString())
+          @emit('end')
         .pipe source(entry)
         .pipe(
           $.rename {
