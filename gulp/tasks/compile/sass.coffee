@@ -1,9 +1,8 @@
 { gulp, $, src, dest } = require 'gulp-config'
 bs = require 'browser-sync'
-autoprefixer = require 'autoprefixer'
 
 gulp.task 'sass', ->
-  gulp.src("#{src.sass}*.sass")
+  gulp.src("#{src.style}*.sass")
     .pipe $.plumber()
     .pipe $.sourcemaps.init()
     .pipe $.cssGlobbing {
@@ -15,7 +14,7 @@ gulp.task 'sass', ->
       ]
     })
     .pipe $.postcss([
-      autoprefixer({browsers: ['last 1 version', 'ie 10', '> 1%']})
+      require('autoprefixer')({browsers: ['last 1 version', 'ie 10', '> 1%']}),
     ])
     .pipe $.sourcemaps.write('.')
     .pipe gulp.dest(dest.style)
