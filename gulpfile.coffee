@@ -10,3 +10,6 @@ gulp.task 'minify', (cb) ->
 
 gulp.task 'default', (cb) ->
   runSequence('clean', 'compile', 'dev-server', cb)
+
+gulp.task 'build', (cb) ->
+  runSequence('clean', 'compile', 'minify', cb)
