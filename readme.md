@@ -17,18 +17,6 @@
 6. 安裝 gulp 在 global 環境中
 `npm install gulp -g`
 
-# 檔案結構
-```
-.
-├── src: 工作檔
-├── build: 最後生成的檔案目錄
-├── gulp: gulp tasks
-├── gulpfile.coffee: gulp 入口檔案
-├── node_modules: 相依套件
-├── package.json: 專案設定檔
-└── readme.md: 說明檔
-```
-
 # 目前主要的 gulp tasks
 - `gulp` or `gulp default`: 相當於 fireapp 的 watch
   - `gulp clean`: 把原本 build 資料夾的內容刪除
@@ -58,6 +46,19 @@ gulp.task('task-name', function(){
 ```
 
 接著在 CLI 執行 `gulp task-name`，就可以看到成果了
+
+# 檔案結構
+```
+.
+├── src: 工作檔
+├── build: 最後生成的檔案目錄
+├── gulp: gulp tasks
+├── gulpfile.coffee: gulp 入口檔案
+├── node_modules: 相依套件
+├── package.json: 專案設定檔
+└── readme.md: 說明檔
+```
+
 
 # 工作檔結構
 ```
