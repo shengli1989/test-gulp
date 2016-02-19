@@ -1,6 +1,3 @@
-# clone repo
-`git clone https://github.com/unfoldgroup/starter2016.git`
-
 # 安裝環境
 1. 裝 [brew](http://brew.sh/index_zh-tw.html)
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
@@ -11,8 +8,14 @@
 3. 裝 [node](https://nodejs.org/en/)
 `nvm install node`
 
-4. 安裝專案需要的 package
+4. clone repo 到你喜歡的資料夾下
+`git clone https://github.com/unfoldgroup/starter2016.git`
+
+5. 安裝專案需要的 package
 `npm install`
+
+6. 安裝 gulp 在 global 環境中
+`npm install gulp -g`
 
 # 檔案結構
 ```
