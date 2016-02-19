@@ -1,5 +1,14 @@
 # 安裝 package
-1. 確定 node 裝好了
+1. 裝 [brew](http://brew.sh/index_zh-tw.html)
+`ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+
+2. 裝 [nvm](https://github.com/creationix/nvm)
+`brew install nvm`
+
+3. 裝 [node](https://nodejs.org/en/)
+`nvm install node`
+
+4. 安裝專案需要的 package
 `npm install`
 
 # 檔案結構
