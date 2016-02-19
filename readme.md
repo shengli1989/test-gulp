@@ -1,4 +1,7 @@
-# 安裝 package
+# clone repo
+`git clone https://github.com/unfoldgroup/starter2016.git`
+
+# 安裝環境
 1. 裝 [brew](http://brew.sh/index_zh-tw.html)
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
