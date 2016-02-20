@@ -66,7 +66,8 @@ src
 ├── data.yml
 ├── jade
 │   ├── layouts
-│   └── pages
+│   ├── pages
+│   └── partials
 ├── robot.txt
 ├── sass
 │   ├── _layout.sass
