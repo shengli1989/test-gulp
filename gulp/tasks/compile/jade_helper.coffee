@@ -9,6 +9,5 @@ sampleSize = require 'lodash/sampleSize'
 
 module.exports =
   zh_lorem_sentence: -> sample(sentenceHowl)
-  zh_lorem_sentences: (int) ->
-    sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
+  zh_lorem_sentences: (int) -> sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
   zh_lorem_paragraphs: (int) -> sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
