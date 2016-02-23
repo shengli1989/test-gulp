@@ -1,4 +1,4 @@
-{ gulp, $, basePath, src, dest } = require 'gulp-config'
+{ gulp, $, src, dest } = require 'gulp-config'
 fs = require 'fs'
 bs = require 'browser-sync'
 jsonSass = require 'json-sass'
@@ -6,12 +6,12 @@ source = require 'vinyl-source-stream'
 del = require 'del'
 
 gulp.task 'sass-config:source', ->
-  gulp.src "#{basePath.src}shared-config.yml"
+  gulp.src "#{src.config}shared.yml"
     .pipe $.yaml({ safe: true })
     .pipe gulp.dest('./.tmp/')
 
 gulp.task 'sass-config:generate', ['sass-config:source'], ->
-  jsonFile = "./.tmp/shared-config.json"
+  jsonFile = "./.tmp/shared.json"
 
   fs.createReadStream(jsonFile)
     .pipe jsonSass(

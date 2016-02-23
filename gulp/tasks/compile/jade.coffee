@@ -1,9 +1,12 @@
-{ gulp, $, basePath, src, dest, data, sharedConfig } = require 'gulp-config'
+{ gulp, $, basePath, src, dest, readConfig } = require 'gulp-config'
 
 assign = require 'lodash/assign'
 helper = require './jade_helper'
 
 gulp.task 'compile:jade', ->
+  data = readConfig('data')
+  sharedConfig = readConfig('shared')
+
   gulp.src(["#{src.pages}**/*.jade", "!#{src.pages}**/_*.jade"])
     .pipe $.plumber()
     .pipe $.jade({
