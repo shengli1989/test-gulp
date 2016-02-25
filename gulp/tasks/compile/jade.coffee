@@ -12,6 +12,6 @@ gulp.task 'compile:jade', ->
     .pipe $.jade({
         pretty: true
         data: assign(data, sharedConfig, helper)
-        basedir: "#{global.process.env.INIT_CWD}/#{basePath.src}/jade"
+        basedir: "#{basePath.root}/#{basePath.src}/jade"
       })
     .pipe gulp.dest(dest.pages)

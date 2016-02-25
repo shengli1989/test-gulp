@@ -1,0 +1,23 @@
+extends /layouts/_default
+
+include /mixin/_picture
+
+block content
+  :markdown
+    # responsive image
+    ### 1. 當圖片僅為品質考量，用 `srcset` and `sizes` （會使用 cache 裡的最大圖片，如果沒有的話，就會依條件設定尋找）
+
+  img(src='/assets/images/oval/default.png' srcset='/assets/images/oval/default@1x.png 1x, /assets/images/oval/default@2x.png 2x')
+  img(src='/assets/images/hero.png' srcset='/assets/images/hero-700.png 1x, /assets/images/hero-700@2x.png 2x')
+
+  :markdown
+    ### 2. 當圖片有視覺設計考量（比如說橫排的 logo 變直排），用 `picture` 和 `source`
+
+  +picture('test picture')
+    source(media='(min-width: 960px)' srcset='http://placehold.it/1400x600?text=width%20>%20960')
+    source(media='(min-width: 480px)' srcset='http://placehold.it/960x410?text=480%20<%20width%20<%20960')
+    source(srcset='http://placehold.it/480x480?text=width%20<%20480px')
+
+  :markdown
+    ### 3. 使用 css solution
+  #responsive_image_sample

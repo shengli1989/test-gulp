@@ -1,0 +1,6 @@
+mixin picture(title)
+  picture
+    | <!--[if IE 9]><video style="display: none"><![endif]-->
+    block
+    | <!--[if IE 9]></video><![endif]-->
+    img(src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==' title=title)

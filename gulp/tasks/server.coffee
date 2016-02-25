@@ -11,9 +11,12 @@ gulp.task 'dev-server', ->
     port: 9000
     open: false
     reloadOnRestart: true
+    extensions: 'html'
 
   gulp.watch ["#{basePath.src}**/*.jade", "#{basePath.config}data.yml"], -> runSequence('compile:jade', reload)
   gulp.watch "#{src.styles}**/*.{sass,scss}", ['compile:sass']
   gulp.watch "#{src.scripts}**/*", -> runSequence('compile:coffee', reload)
   gulp.watch "#{basePath.config}shared.yml", -> runSequence('compile', reload)
 
+  gulp.watch "#{src.sketch}*.sketch", -> runSequence('sketch', 'resize', reload)
+  gulp.watch "#{basePath.config}resize-image.coffee", -> runSequence('resize', reload)
