@@ -5,13 +5,12 @@ helper = require './jade_helper'
 
 gulp.task 'compile:jade', ->
   data = readConfig('data')
-  sharedConfig = readConfig('shared')
 
   gulp.src(["#{src.pages}**/*.jade", "!#{src.pages}**/_*.jade"])
     .pipe $.plumber()
     .pipe $.jade({
         pretty: true
-        data: assign(data, sharedConfig, helper)
+        data: assign(data, helper)
         basedir: "#{basePath.root}/#{basePath.src}/jade"
       })
     .pipe gulp.dest(dest.pages)

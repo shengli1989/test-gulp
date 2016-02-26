@@ -14,9 +14,9 @@ block content
     ### 2. 當圖片有視覺設計考量（比如說橫排的 logo 變直排），用 `picture` 和 `source`
 
   +picture('test picture')
-    source(media='(min-width: 960px)' srcset='http://placehold.it/1400x600?text=width%20>%20960')
-    source(media='(min-width: 480px)' srcset='http://placehold.it/960x410?text=480%20<%20width%20<%20960')
-    source(srcset='http://placehold.it/480x480?text=width%20<%20480px')
+    source(media=mq.desktop srcset='http://placehold.it/1300x600?text=desktop')
+    source(media=mq.tablet srcset='http://placehold.it/980x410?text=tablet')
+    source(srcset='http://placehold.it/740x480?text=phone')
 
   :markdown
     ### 3. 使用 css solution
