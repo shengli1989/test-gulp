@@ -18,5 +18,5 @@ gulp.task 'dev-server', ->
   gulp.watch "#{src.scripts}**/*", -> runSequence('compile:coffee', reload)
   gulp.watch "#{basePath.config}shared.yml", -> runSequence('compile', reload)
 
-  gulp.watch "#{src.sketch}*.sketch", -> runSequence('sketch', 'resize', reload)
-  gulp.watch "#{basePath.config}resize-image.coffee", -> runSequence('resize', reload)
+  gulp.watch "#{src.sketch}*.sketch", -> runSequence('images:sketch', 'images:resize', reload)
+  gulp.watch "#{basePath.config}resize-image.coffee", -> runSequence('images:resize', reload)

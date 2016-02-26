@@ -6,12 +6,12 @@ module.exports = [
       {
         width: 150
         rename:
-          suffix: '@1x'
+          suffix: '-150'
       }
       {
         width: 150 * 2
         rename:
-          suffix: '@2x'
+          suffix: '-150@2x'
       }
     ]
     'hero.png': [
