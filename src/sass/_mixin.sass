@@ -1,5 +1,49 @@
+// rwd alias ----------------------------
+
+=tablet
+  +mq(tablet)
+    @content
+
+=desktop
+  +mq(desktop)
+    @content
+
+=landscape
+  +mq($and: $mq-landscape)
+    @content
+
+=retina
+  +mq($and: $mq-hidpi)
+    @content
+
+// image ----------------------------
+
+// asset-related functions from: https://github.com/assetsjs/postcss-assets
+
+=retina-image($url, $ext)
+  $image: $url + $ext
+  $size: size($image)
+  width: width($image)
+  height: height($image)
+  background-image: resolve($image)
+  +retina
+    background-image: resolve($url + '@2x' + $ext)
+    background-size: $size
+
+=retina-background($url, $ext, $bg-size: cover)
+  $image: $url + $ext
+  background-image: resolve($image)
+  background-size: $bg-size
+  +retina
+    background-image: resolve($url + '@2x' + $ext)
+    background-size: $bg-size
+
+// debug ----------------------------
+
 =xx($opacity: .2)
   outline: 1px solid rgba(red, $opacity)
+
+// alias ----------------------------
 
 =input-placeholder-color($color)
   &::-webkit-input-placeholder
@@ -14,11 +58,6 @@
 
   &:-ms-input-placeholder
     color: $color
-
-=reset-box-model
-  margin: 0
-  padding: 0
-  border: 0
 
 =link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false)
   color: $normal
@@ -39,6 +78,13 @@
   text-decoration: none
   &:hover, &:focus
     text-decoration: underline
+
+// layout ----------------------------
+
+=reset-box-model
+  margin: 0
+  padding: 0
+  border: 0
 
 =pie-clearfix
   &:after
