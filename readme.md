@@ -2,19 +2,26 @@
 1. 裝 [brew](http://brew.sh/index_zh-tw.html)
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
 
-2. 裝 [nvm](https://github.com/creationix/nvm)
+- 裝 [nvm](https://github.com/creationix/nvm)
 `brew install nvm`
 
-3. 裝 [node](https://nodejs.org/en/)
+- 裝 [node](https://nodejs.org/en/)
 `nvm install node`
 
-4. clone repo 到你喜歡的資料夾下
+- clone repo 到你喜歡的資料夾下
 `git clone https://github.com/unfoldgroup/starter2016.git`
 
-5. 安裝專案需要的 package
+- 要直接吃 sketch 檔生圖，要安裝 sketchtool
+`Sketch.app/Contents/Resources/sketchtool/install.sh`
+(Sketch.app 的路徑因個人環境而異)
+
+- 安裝 libvips（縮圖用，安裝需要跑一段時間）
+`brew install homebrew/science/vips --with-webp --with-graphicsmagick`
+
+- 安裝專案需要的 package
 `npm install`
 
-6. 安裝 gulp 在 global 環境中
+- 安裝 gulp 在 global 環境中
 `npm install gulp -g`
 
 # 目前主要的 gulp tasks
@@ -32,11 +39,10 @@
 先取得需要用到的常用變數
 
 ```js
-gulp = require('config-gulp').gulp
-src = require('config-gulp').src
-dest = require('config-gulp').dest
+src = G.src
+dest = G.dest
 ```
-
+以上 `G` 定義於 `global-vars.coffee`
 然後開始定義 task
 
 ```js
@@ -50,6 +56,8 @@ gulp.task('task-name', function(){
 # 檔案結構
 ```
 .
+├── config：設定檔
+├── global-vars.coffee：gulp 用的全域變數
 ├── src: 工作檔
 ├── build: 最後生成的檔案目錄
 ├── gulp: gulp tasks
@@ -63,12 +71,15 @@ gulp.task('task-name', function(){
 # 工作檔結構
 ```
 src
-├── data.yml
+├── data
+│   ├── global.yml: 全站共用資料
+│   ├── index.yml: 只有首頁會用到的資料
+│   └── page-name.yml: 只有某頁面會用到的資料
 ├── jade
 │   ├── layouts
+│   ├── mixin
 │   ├── pages
 │   └── partials
-├── robot.txt
 ├── sass
 │   ├── _layout.sass
 │   ├── _mixin.sass
@@ -81,13 +92,15 @@ src
 │   ├── page
 │   └── partial
 ├── scripts
-│   ├── main.coffee
+│   ├── global.coffee: 全站共用的 js
 │   ├── page-name.coffee
 │   └── util
-└── shared-config.yml: jade, sass, coffee 共用變數，比如 breakpoints
+└── sketch
+    └── assets.sketch
 ```
 
 # 待做事項
 - asset 處理：搬移、縮放圖片，直接從 .sketch 匯出圖檔
-- iconfont：從 .sketch 檔轉成 iconfont
+- svg sprites
 - deploy 相關：gh-pages 和 s3 的 deploy task
+
