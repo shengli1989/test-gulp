@@ -1,4 +1,3 @@
-// input variable
 $form-height: 36px
 $form-border-width: 1px
 $form-border-color: #dddddd
@@ -18,9 +17,7 @@ $form-content-color: $form-color
 $form-tip-font-size: 13px
 $form-tip-color: #999999
 
-// form 預設樣式
 .form
-  // Remove default style in iOS.
   textarea,
   input:not([type]),
   input[type="text"],
@@ -32,8 +29,8 @@ $form-tip-color: #999999
   input[type="number"],
   input[type="datetime"]
     -webkit-appearance: none
-  // restyle input, textarea, select
-  .form-control,
+
+  &_control,
   textarea,
   select,
   input[type="date"],
@@ -49,68 +46,63 @@ $form-tip-color: #999999
   input[type="time"],
   input[type="url"],
   input[type="week"]
-    box-sizing: border-box
-    border: $form-border-width solid $form-border-color
     padding: $form-padding
     min-height: $form-height
-    border-radius: $form-radius-width
-    color: $form-color
-    +adjust-font-size-to($form-font-size)
-    background-color: $form-bg-color
-    +input-placeholder-color($form-placeholder-color)
-    box-shadow: none
-    outline: none
     max-width: 100%
-    // Responsiveness: Sets a maximum width relative to the parent to scale on narrower viewports
-    &.full-width
+    border: $form-border-width solid $form-border-color
+    border-radius: $form-radius-width
+    background-color: $form-bg-color
+    box-shadow: none
+    color: $form-color
+    outline: none
+    @extend %typecsset-vertical-rhythm
+    +typecsset-font-size($form-font-size)
+    +input-placeholder-color($form-placeholder-color)
+    &.is-full-width
       width: 100%
   input[type="file"], select
     cursor: pointer
     outline: none
   textarea
     vertical-align: top
-    // Improve readability and alignment in all browsers.
     min-height: $form-height * 3
   select
     height: $form-height
-    // min-height 失效，要使用 height 才能指定高度
 
-// =========================================
-// form 排版
-// =========================================
+  // =========================================
+  // form 排版
+  // =========================================
 
-// 垂直排列（預設排版方式）
-.form-row + .form-row
-  +leader(0.5)
+  // 垂直排列（預設排版方式）
+  &_row + &_row
+    +leader(0.5)
 
-.form-label
-  display: block
-  +adjust-font-size-to($form-label-font-size)
-  +trailer(0.125)
-  color: black
-  @extend %subpixel
-  .is_required &:after
-    content: '*'
-    display: inline
-    font-size: $form-label-font-size + 2px
-    line-height: 1
-    color: #c00
+  &_label
+    display: block
+    +typecsset-font-size($form-label-font-size)
+    @extend %subpixel
+    .is-required &:after
+      content: '*'
+      display: inline
+      font-size: $form-label-font-size + 2px
+      line-height: 1
+      color: #c00
 
-.form-content
-  display: block
-  +adjust-font-size-to($form-content-font-size)
-  color: $form-content-color
+  &_content
+    display: block
+    color: $form-content-color
+    +typecsset-font-size($form-content-font-size)
 
-.form-tip
-  display: block
-  margin: 0
-  +adjust-font-size-to($form-tip-font-size)
-  color: $form-tip-color
+  &_tip
+    display: block
+    margin: 0
+    color: $form-tip-color
+    +typecsset-font-size($form-tip-font-size)
 
-.radio-group, .checkbox-group
-  display: block
-  & + &
-    +leader(0.125)
+  &_action
+    +leader(1)
+    .btn
+      margin-right: 12px
 
 .radio, .checkbox
   cursor: pointer
@@ -120,10 +112,10 @@ $form-tip-color: #999999
     outline: none
     margin-right: 3px
 
-.form-action
-  +leader(1)
-  .btn
-    margin-right: 12px
+  &_group
+    display: block
+    & + &
+      +leader(0.125)
 
 // 水平排列：
 // 由於在手機版時，表單不適合使用水平排列，

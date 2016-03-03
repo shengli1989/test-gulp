@@ -9,6 +9,7 @@ gulp.task 'compile:sass', (done) ->
       extensions: ['.sass', '.scss']
     }
     .pipe $.sass.sync({
+      precision: 10
       includePaths: [
         './node_modules/normalize.css'
         './node_modules/sass-mq'

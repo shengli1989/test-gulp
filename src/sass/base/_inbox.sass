@@ -1,9 +1,13 @@
+*, *:before, *:after
+  box-sizing: border-box
+
 body
   @extend %helvetica
   -webkit-text-size-adjust: 100%
   -webkit-font-smoothing: antialiased
   text-rendering: optimizeLegibility
   color: $text-color
+  // +baseline-grid-background
 
 img
   max-width: 100%
@@ -12,7 +16,7 @@ img
 p
   +leader(0)
   +trailer(1)
-  +adjust-font-size-to(16px)
+  +typecsset-font-size(16px)
 
 a
   +link-colors($link-color, $link-color-hover)
