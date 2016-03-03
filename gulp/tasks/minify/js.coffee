@@ -1,4 +1,4 @@
-{ $, gulp, dest } = require 'gulp-config'
+{ dest } = G
 
 gulp.task 'minify:js', ->
   gulp.src("#{dest.scripts}*.js")

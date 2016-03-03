@@ -1,4 +1,4 @@
-{ $, gulp, basePath, src, dest } = require 'gulp-config'
+{ basePath, src, dest } = G
 
 browserify = require 'browserify'
 coffeeify  = require 'coffeeify'

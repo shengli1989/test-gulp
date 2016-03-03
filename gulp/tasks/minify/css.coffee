@@ -1,4 +1,4 @@
-{ $, gulp, dest } = require 'gulp-config'
+{ dest } = G
 del = require 'del'
 
 gulp.task 'minify:css', ->

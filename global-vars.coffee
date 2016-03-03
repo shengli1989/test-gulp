@@ -1,5 +1,7 @@
-gulp = require 'gulp'
-$ = require('gulp-load-plugins')()
+global.gulp = require 'gulp'
+global.$ = require('gulp-load-plugins')()
+global.xx = (t) -> console.log(t)
+
 fs = require 'fs'
 yaml = require 'js-yaml'
 
@@ -37,4 +39,4 @@ readYml = (dir, fileName) ->
 readConfig = (fileName) -> readYml(basePath.config, fileName)
 readData = (fileName) -> readYml(src.data, fileName)
 
-module.exports = { gulp, $, basePath, src, dest, resizedImagesFolder, readConfig, readData }
+global.G = { basePath, src, dest, resizedImagesFolder, readConfig, readData }

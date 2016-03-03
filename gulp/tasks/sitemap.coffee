@@ -1,4 +1,4 @@
-{ $, gulp, basePath, dest, readData } = require 'gulp-config'
+{ basePath, dest, readData } = G
 
 gulp.task 'sitemap', ->
   gulp.src "#{dest.pages}**/*.html"

@@ -1,4 +1,4 @@
-{ gulp, $, basePath, src } = require 'gulp-config'
+{ basePath, src } = G
 
 fs = require 'fs'
 jsonSass = require 'json-sass'

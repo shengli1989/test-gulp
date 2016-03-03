@@ -1,4 +1,4 @@
-{ gulp, basePath } = require 'gulp-config'
+{ basePath } = G
 del = require 'del'
 
 gulp.task 'clean', ->

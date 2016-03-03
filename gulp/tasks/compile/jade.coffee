@@ -1,4 +1,4 @@
-{ gulp, $, basePath, src, dest, readData } = require 'gulp-config'
+{ basePath, src, dest, readData } = G
 
 path = require 'path'
 assign = require 'lodash/assign'

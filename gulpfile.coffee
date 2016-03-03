@@ -1,4 +1,5 @@
-gulp = require 'gulp'
+require './global-vars'
+
 run = require 'run-sequence'
 
 # Load sub tasks

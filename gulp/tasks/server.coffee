@@ -1,4 +1,4 @@
-{ gulp, basePath, src } = require 'gulp-config'
+{ basePath, src } = G
 bs = require 'browser-sync'
 runSequence = require 'run-sequence'
 reload = bs.reload

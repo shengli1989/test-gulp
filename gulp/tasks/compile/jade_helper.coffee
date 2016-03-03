@@ -1,4 +1,5 @@
-{ readConfig, resizedImagesFolder } = require 'gulp-config'
+{ readConfig, resizedImagesFolder } = G
+
 sample = require 'lodash/sample'
 sampleSize = require 'lodash/sampleSize'
 assign = require 'lodash/assign'

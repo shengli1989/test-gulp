@@ -1,4 +1,4 @@
-{ $, gulp, src, dest } = require 'gulp-config'
+{ src, dest } = G
 
 gulp.task 'images:copy', ->
   gulp.src "#{src.images}**/*.{jpg,jpeg,png,gif,svg,cur}"

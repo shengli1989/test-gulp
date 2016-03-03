@@ -1,4 +1,4 @@
-{ $, gulp, src, dest } = require 'gulp-config'
+{ src, dest } = G
 which = require('npm-which')(__dirname)
 
 gulp.task 'images:sketch', ->

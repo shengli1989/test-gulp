@@ -1,4 +1,4 @@
-{ gulp, $, src, dest, resizedImagesFolder } = require 'gulp-config'
+{ src, dest, resizedImagesFolder } = G
 bs = require 'browser-sync'
 
 gulp.task 'compile:sass', (done) ->
