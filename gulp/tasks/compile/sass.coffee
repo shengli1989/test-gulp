@@ -24,4 +24,5 @@ gulp.task 'compile:sass', (done) ->
       bs.stream()
     .pipe $.sourcemaps.write('.')
     .pipe gulp.dest(dest.styles)
+    .pipe $.filter(['**/*.css'])
     .pipe bs.stream()
