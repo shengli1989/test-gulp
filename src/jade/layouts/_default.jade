@@ -1,5 +1,5 @@
 doctype html
-html(lang='zh-TW')
+html(lang='zh-TW' class="page-#{currentPage}")
   head
     block head
       include ./shared/_head
@@ -12,7 +12,9 @@ html(lang='zh-TW')
     block og
       include ./shared/_og
   body
-    .page
+    .wrapper
+      if page_name
+        p= page_name
       block content
     block foot
       include ./shared/_foot

@@ -1,8 +1,8 @@
-{ $, gulp, basePath, dest, readConfig } = require 'gulp-config'
+{ $, gulp, basePath, dest, readData } = require 'gulp-config'
 
 gulp.task 'sitemap', ->
   gulp.src "#{dest.pages}**/*.html"
     .pipe $.sitemap(
-      siteUrl: readConfig('data').site.url
+      siteUrl: readData('global').site.url
     )
     .pipe gulp.dest(dest.pages)
