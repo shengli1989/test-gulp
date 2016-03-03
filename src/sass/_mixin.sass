@@ -43,6 +43,10 @@
 =xx($opacity: .2)
   outline: 1px solid rgba(red, $opacity)
 
+=baseline-grid-background($line-height: 24px)
+  background-image: linear-gradient(to top, rgba(0, 154, 142, 0.3) 5%, rgba(0, 154, 142, 0) 5%)
+  background-size: 100% $line-height
+
 // alias ----------------------------
 
 =input-placeholder-color($color)
@@ -97,14 +101,10 @@
 @function rhythm($float)
   @return 0
 
-=baseline-grid-background($line-height: 24px)
-  background-image: linear-gradient(to top, rgba(0, 154, 142, 0.3) 5%, rgba(0, 154, 142, 0) 5%)
-  background-size: 100% $line-height
+=leader($float)
+  margin-top: $typecsset-magic-number * $float
+  margin-top: $typecsset-magic-ratio * $float + rem
 
 =trailer($float)
   margin-bottom: $typecsset-magic-number * $float
   margin-bottom: $typecsset-magic-ratio * $float + rem
-
-=leader($float)
-  margin-top: $typecsset-magic-number * $float
-  margin-top: $typecsset-magic-ratio * $float + rem
