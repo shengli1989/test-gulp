@@ -11,11 +11,11 @@
 - clone repo 到你喜歡的資料夾下
 `git clone https://github.com/unfoldgroup/starter2016.git`
 
-- 要直接吃 sketch 檔生圖，要安裝 sketchtool
+- 要直接吃 sketch 檔生圖，要安裝 [sketchtool](http://www.sketchapp.com/tool/)
 `Sketch.app/Contents/Resources/sketchtool/install.sh`
 (Sketch.app 的路徑因個人環境而異)
 
-- 安裝 libvips（縮圖用，安裝需要跑一段時間）
+- 安裝 [libvips](https://github.com/jcupitt/libvips)（縮圖用，安裝需要跑一段時間）
 `brew install homebrew/science/vips --with-webp --with-graphicsmagick`
 
 - 安裝專案需要的 package
@@ -38,17 +38,15 @@
 
 先取得需要用到的常用變數
 
-```js
-src = G.src
-dest = G.dest
+```coffee
+{ src, dest } = G
 ```
 以上 `G` 定義於 `global-vars.coffee`
 然後開始定義 task
 
-```js
-gulp.task('task-name', function(){
+```coffee
+gulp.task 'task-name', ->
   console.log('hello world')!
-})
 ```
 
 接著在 CLI 執行 `gulp task-name`，就可以看到成果了
