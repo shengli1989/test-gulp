@@ -69,11 +69,8 @@ gulp.task 'task-name', ->
 # 工作檔結構
 ```
 src
-├── data
-│   ├── global.yml: 全站共用資料
-│   ├── index.yml: 只有首頁會用到的資料
-│   └── page-name.yml: 只有某頁面會用到的資料
 ├── jade
+│   ├── data
 │   ├── layouts
 │   ├── mixin
 │   ├── pages
@@ -101,4 +98,3 @@ src
 - asset 處理：搬移、縮放圖片，直接從 .sketch 匯出圖檔
 - svg sprites
 - deploy 相關：gh-pages 和 s3 的 deploy task
-
