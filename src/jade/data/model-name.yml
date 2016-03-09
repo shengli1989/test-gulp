@@ -1,0 +1,5 @@
+sample:
+  -
+    text: 'hihi'
+  -
+    text: "可根據不同需求在不同的 block 裡用 <code>includeData('model-name')</code> 來取得不同的 data model 使用"

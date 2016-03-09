@@ -1,16 +1,14 @@
-{ basePath, src, dest, readData } = G
+{ basePath, src, dest } = G
 
 path = require 'path'
 assign = require 'lodash/assign'
-helper = require './jade_helper'
+helpers = require './jade_helpers'
 
 getData = (file) ->
   relativePagePath = file.path.replace(src.pages, '').replace('.jade', '')
-
-  globalData = readData('global')
-  specificData = readData(relativePagePath) || {}
-  specificData.currentPage = relativePagePath.replace(/\//g, '_')
-  assign(globalData, specificData, helper)
+  specificData = 
+    currentPage: relativePagePath.replace(/\//g, '_')
+  assign(specificData, helpers)
 
 gulp.task 'compile:jade', ->
   gulp.src(["#{src.pages}**/*.jade", "!#{src.pages}**/_*.jade"])

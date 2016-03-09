@@ -14,6 +14,11 @@ block content
 
   hr
 
+  - var messages = includeData('model-name').sample
+  ul
+    each message in messages
+      li!= message.text
+
   h1= zh_lorem_sentences(2)
   p= zh_lorem_paragraphs(4)
   h2= zh_lorem_sentences(2)

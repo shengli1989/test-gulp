@@ -11,8 +11,8 @@ src =
   scripts: "#{basePath.src}scripts/"
   sketch: "#{basePath.src}sketch/"
   pages: "#{basePath.src}jade/pages/"
+  data: "#{basePath.src}jade/data/"
   images: "#{basePath.src}images/"
-  data: "#{basePath.src}data/"
 
 dest =
   styles: "#{basePath.dest}assets/stylesheets/"
