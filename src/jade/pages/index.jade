@@ -14,7 +14,7 @@ block content
 
   hr
 
-  - var messages = includeData('model-name').sample
+  - var messages = getData('model-name').sample
   ul
     each message in messages
       li!= message.text

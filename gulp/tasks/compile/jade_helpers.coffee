@@ -16,7 +16,7 @@ helpers = assign(globalData, sharedConfig,
   zh_lorem_sentences: (int) -> sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
   zh_lorem_paragraphs: (int) -> sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
   image_url: (name) -> "/#{resizedImagesFolder}#{name}"
-  includeData: readData
+  getData: readData
   mq:
     tablet: "(min-width: #{sharedConfig.breakpoints.tablet})"
     desktop: "(min-width: #{sharedConfig.breakpoints.desktop})"
