@@ -3,6 +3,6 @@
 gulp.task 'sitemap', ->
   gulp.src "#{dest.pages}**/*.html"
     .pipe $.sitemap(
-      siteUrl: readData('global').site.url
+      siteUrl: readData('meta').site.url
     )
     .pipe gulp.dest(dest.pages)
