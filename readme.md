@@ -28,6 +28,7 @@
 - `gulp` or `gulp default`: 相當於 fireapp 的 watch
   - `gulp clean`: 把原本 build 資料夾的內容刪除
   - `gulp compile`: compile sass, jade 和 coffeescript
+  - `gulp images`: 從 sketch 輸出圖片以及搬移原有的圖檔並進行壓縮
   - `gulp dev-server`: 開啟 browserSync 並且 watch 原始檔
 - `gulp build`: 相當於 fireapp 的 build
   - `gulp minify`: 將 build 資料夾內的檔案壓縮
@@ -41,7 +42,7 @@
 ```coffee
 { src, dest } = G
 ```
-以上 `G` 定義於 `global-vars.coffee`
+以上 `G` 定義於 `gulpfile.coffee`
 然後開始定義 task
 
 ```coffee
@@ -55,12 +56,11 @@ gulp.task 'task-name', ->
 ```
 .
 ├── config：設定檔
-├── global-vars.coffee：gulp 用的全域變數
 ├── src: 工作檔
 ├── build: 最後生成的檔案目錄
-├── gulp: gulp tasks
+├── gulp: gulp tasks, helper 和預設參數
 ├── gulpfile.coffee: gulp 入口檔案
-├── node_modules: 相依套件
+├── node_modules: 透過 npm 安裝的相依套件
 ├── package.json: 專案設定檔
 └── readme.md: 說明檔
 ```
@@ -69,7 +69,7 @@ gulp.task 'task-name', ->
 # 工作檔結構
 ```
 src
-├── jade
+├── view
 │   ├── data
 │   ├── layouts
 │   ├── mixin
@@ -90,11 +90,11 @@ src
 │   ├── global.coffee: 全站共用的 js
 │   ├── page-name.coffee
 │   └── util
+├── images
 └── sketch
     └── assets.sketch
 ```
 
 # 待做事項
-- asset 處理：搬移、縮放圖片，直接從 .sketch 匯出圖檔
 - svg sprites
 - deploy 相關：gh-pages 和 s3 的 deploy task
