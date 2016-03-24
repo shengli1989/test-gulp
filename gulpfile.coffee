@@ -1,9 +1,15 @@
-require './global-vars'
-
 run = require 'run-sequence'
 
+# Global variables
+require './gulp/aliases'
+{ rootPath, basePath, src, dest, resizedImagesFolder } = require './gulp/paths'
+{ readConfig, readData } = require './gulp/helpers'
+
+global.G = { rootPath, basePath, src, dest, resizedImagesFolder, readConfig, readData }
+
 # Load sub tasks
-require('require-dir')('./gulp', {recurse: true})
+require('require-dir')('./gulp/tasks', {recurse: true})
+
 
 # Top-level tasks
 gulp

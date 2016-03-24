@@ -10,8 +10,8 @@ src =
   styles: "#{basePath.src}sass/"
   scripts: "#{basePath.src}scripts/"
   sketch: "#{basePath.src}sketch/"
-  pages: "#{basePath.src}jade/pages/"
-  data: "#{basePath.src}jade/data/"
+  pages: "#{basePath.src}view/pages/"
+  data: "#{basePath.src}view/data/"
   images: "#{basePath.src}images/"
 
 dest =

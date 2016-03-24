@@ -6,7 +6,7 @@ helpers = require './jade_helpers'
 
 getData = (file) ->
   relativePagePath = file.path.replace(src.pages, '').replace('.jade', '')
-  specificData = 
+  specificData =
     currentPage: relativePagePath.replace(/\//g, '_')
   assign(specificData, helpers)
 
@@ -16,6 +16,6 @@ gulp.task 'compile:jade', ->
     .pipe $.data(getData)
     .pipe $.jade({
         pretty: true
-        basedir: "#{basePath.src}/jade"
+        basedir: "#{basePath.src}/view"
       })
     .pipe gulp.dest(dest.pages)

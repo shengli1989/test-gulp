@@ -10,7 +10,7 @@ gulp.task 'compile:variables_transform_source', ->
     .pipe gulp.dest('./.tmp/')
 
 gulp.task 'compile:variables', ['compile:variables_transform_source'], ->
-  jsonFile = "./.tmp/shared.json"
+  jsonFile = './.tmp/shared.json'
 
   fs.createReadStream(jsonFile)
     .pipe jsonSass(
@@ -23,5 +23,4 @@ gulp.task 'compile:variables', ['compile:variables_transform_source'], ->
     .pipe $.rename('_shared-config.scss')
     .pipe gulp.dest(src.styles)
 
-# del = require 'del'
-# del './.tmp'
+  require('del')('./.tmp')
