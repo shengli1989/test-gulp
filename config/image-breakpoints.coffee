@@ -29,6 +29,7 @@ module.exports = [
   }
   {
     errorOnUnusedImage: false
+    errorOnUnusedConfig: false
     passThroughUnused: true
   }
 ]
