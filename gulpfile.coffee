@@ -1,13 +1,5 @@
-run = require 'run-sequence'
-
 # Global variables
 require './gulp/aliases'
-{ rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl } = require './gulp/paths'
-{ readConfig, readData, logger, checkExistence } = require './gulp/helpers'
-
-global.G = { rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl, readConfig, readData, logger, checkExistence }
-
-logger.info "current environment: #{argv.env}"
 
 # better gulp.src for error handling
 _gulpsrc = gulp.src
@@ -22,6 +14,8 @@ gulp.src = ->
 require('require-dir')('./gulp/tasks', {recurse: true})
 
 # Top-level tasks
+run = require 'run-sequence'
+
 gulp
   .task 'images',  (cb) -> run(['images:sketch', 'images:copy'], 'images:resize', 'images:svg-sprites', cb)
   .task 'compile', (cb) -> run('compile:variables', ['compile:jade', 'compile:sass', 'compile:coffee'], cb)

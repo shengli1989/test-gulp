@@ -1,3 +1,5 @@
+assign = require 'lodash/assign'
+
 rootPath = global.process.env.PWD
 
 basePath =
@@ -24,4 +26,4 @@ dest =
 resizedImagesFolder = '/assets/images/r/'
 spritesUrl = '/assets/images/sprite.svg'
 
-module.exports = { rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl }
+assign(G, {rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl})

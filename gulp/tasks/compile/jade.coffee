@@ -9,7 +9,7 @@ getData = (file) ->
   relativePagePath = file.path.replace(src.pages, '').replace('.jade', '')
   specificData =
     currentPage: relativePagePath.replace(/\//g, '_')
-  assign(specificData, helpers)
+  return assign(specificData, helpers)
 
 gulp.task 'compile:jade', ->
   checkExistence("#{src.pages}**/!(_*).jade", 'jade', src.pages)

@@ -1,4 +1,4 @@
-{ src, dest, logger, checkExistence } = G
+{ src, dest, checkExistence } = G
 which = require('npm-which')(__dirname)
 glob = require 'glob'
 

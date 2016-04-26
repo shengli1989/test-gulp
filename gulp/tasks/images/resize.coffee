@@ -1,4 +1,4 @@
-{ basePath, src, dest, logger } = G
+{ basePath, src, dest } = G
 
 fs = require 'fs'
 

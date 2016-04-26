@@ -1,13 +1,9 @@
-{ basePath, src } = require './paths'
+{ basePath, src } = G
 
 fs = require 'fs'
 yaml = require 'js-yaml'
 glob = require 'glob'
-
-logger =
-  info: (msg) -> $.util.log($.util.colors.blue("[INFO] #{msg}"))
-  warn: (msg) -> $.util.log($.util.colors.yellow("[WARN] #{msg}"))
-  alert: (msg) -> $.util.log($.util.colors.red("[ALERT] #{msg}"))
+assign = require 'lodash/assign'
 
 readYml = (dir, fileName, cb) ->
   filePath = "#{dir}#{fileName}.yml"
@@ -27,4 +23,4 @@ checkExistence = (pattern, task, directory) ->
     if !files.length
       logger.warn "#{task}: no files matches under #{directory}"
 
-module.exports = { readConfig, readData, logger, checkExistence }
+assign(G, {readConfig, readData, checkExistence})

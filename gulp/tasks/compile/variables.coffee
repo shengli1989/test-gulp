@@ -1,4 +1,4 @@
-{ basePath, src, logger, checkExistence } = G
+{ basePath, src, checkExistence } = G
 
 fs = require 'fs'
 jsonSass = require 'json-sass'
