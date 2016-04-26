@@ -1,3 +1,36 @@
+# features
+- [x] share data with js & html (build time)
+- [x] browserSync
+- [x] auto generate sitemap.xml
+- [ ] archive with timestamp, branch name & env
+- html
+  - [x] jade support
+  - [x] sourcemap
+  - [x] customizable helpers
+  - [x] minify
+- css
+  - [x] sass support
+  - [x] globbing import
+  - [x] autoprefix
+  - [x] postcss-assets
+  - [x] sourcemap
+  - [x] minify
+- javascripts
+  - [x] coffee support
+  - [x] sourcemap
+  - [x] browserify
+  - [x] uglify
+  - [ ] coffeelint
+- assets
+  - [x] imagemin
+  - [x] auto resize with breakpoints
+  - [x] auto generate svg sprites
+  - [x] export slice from sketch
+  - [ ] sketch to svg sprites
+- args
+  - [x] env
+  - [ ] minify
+
 # 安裝環境
 1. 裝 [brew](http://brew.sh/index_zh-tw.html)
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
@@ -42,7 +75,7 @@
 ```coffee
 { src, dest } = G
 ```
-以上 `G` 定義於 `gulpfile.coffee`
+以上 `G` 定義於 `gulp/alias.coffee` 末端呼叫的檔案中
 然後開始定義 task
 
 ```coffee
@@ -77,7 +110,7 @@ src
 │   └── partials
 ├── sass
 │   ├── _layout.sass
-│   ├── _mixin.sass
+│   ├── _mixins.sass
 │   ├── _shared-config.scss
 │   ├── _typography.sass
 │   ├── _variable.sass
@@ -85,16 +118,14 @@ src
 │   ├── base
 │   ├── component
 │   ├── page
-│   └── partial
+│   ├── partial
+│   └── vendor
 ├── scripts
 │   ├── global.coffee: 全站共用的 js
 │   ├── page-name.coffee
 │   └── util
 ├── images
+├── svg_sprites
 └── sketch
     └── assets.sketch
 ```
-
-# 待做事項
-- svg sprites
-- deploy 相關：gh-pages 和 s3 的 deploy task
