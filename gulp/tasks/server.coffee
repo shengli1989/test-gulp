@@ -26,7 +26,7 @@ gulp.task 'dev-server', ->
   gulp.watch "#{basePath.config}shared.yml", -> runSequence('compile', reload)
   gulp.watch './gulp/tmpl/*.handlebars', ['images:svg-sprites']
 
-  gulp.watch "#{src.sketch}*.sketch", -> runSequence('images:sketch', 'images:resize', reload)
+  gulp.watch "#{src.sketch}*.sketch", -> runSequence('images:sketch', 'images:resize', 'images:svg-sprites', reload)
   gulp.watch "#{basePath.config}image-breakpoints.coffee", -> runSequence('images:resize', reload)
 
   gulp.watch(['./gulpfile.coffee', './gulp/**/*.coffee'], ['gulp-reload'])

@@ -26,7 +26,7 @@
   - [x] auto resize with breakpoints
   - [x] auto generate svg sprites
   - [x] export slice from sketch
-  - [ ] sketch to svg sprites
+  - [x] sketch -> svg sprites
 - args
   - [x] env
   - [ ] minify

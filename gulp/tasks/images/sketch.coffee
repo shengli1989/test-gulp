@@ -1,9 +1,9 @@
 { src, dest, checkExistence } = G
 which = require('npm-which')(__dirname)
 glob = require 'glob'
+es = require 'event-stream'
 
-
-gulp.task 'images:sketch', ->
+gulp.task 'images:sketch', (cb) ->
   # to skip this task for windows user
   try
     which.sync('sketchtool')
@@ -12,7 +12,22 @@ gulp.task 'images:sketch', ->
 
   checkExistence "#{src.sketch}*.sketch", 'sketch', src.sketch
 
-  gulp.src "#{src.sketch}*.sketch"
-    .pipe $.sketch
-      export: 'slices'
-    .pipe gulp.dest(dest.images)
+  glob "#{src.sketch}*.sketch", (err, files) ->
+    return cb() if !files.length
+
+    tasks = files.map (entry) ->
+      if entry.indexOf('svg_sprites.sketch') != -1
+        imageDest = src.svgSprites
+        options =
+          export: 'artboards'
+          formats: 'svg'
+      else
+        imageDest = dest.images
+        options =
+          export: 'slices'
+
+      gulp.src entry
+        .pipe $.sketch(options)
+        .pipe gulp.dest(imageDest)
+
+    es.merge(tasks).on('end', cb)
