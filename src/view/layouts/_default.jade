@@ -1,11 +1,13 @@
 doctype html
 html(lang='zh-TW' class="page-#{currentPage}")
+  include /mixin/_icon
   include /data/global
   head
     block head
       include ./shared/_head
     block title
-      title= site.title
+      - var star = env == 'dev' ? '★': ''
+      title #{star}#{site.title}
     block keywords
       meta(name='keywords' content=site.keywords)
     block description

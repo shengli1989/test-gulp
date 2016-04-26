@@ -2,6 +2,7 @@
 
 fs = require 'fs'
 yaml = require 'js-yaml'
+env = require('yargs').argv.env || 'dev'
 
 readYml = (dir, fileName) ->
   filePath = "#{dir}#{fileName}.yml"
@@ -13,4 +14,8 @@ readYml = (dir, fileName) ->
 readConfig = (fileName) -> readYml(basePath.config, fileName)
 readData = (fileName) -> readYml(src.data, fileName)
 
-module.exports = { readConfig, readData }
+logger =
+  info: (msg) -> $.util.log($.util.colors.blue("[INFO] #{msg}"))
+  warn: (msg) -> $.util.log($.util.colors.red("[WARN] #{msg}"))
+
+module.exports = { readConfig, readData, logger }

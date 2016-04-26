@@ -1,4 +1,4 @@
-{ src, dest, resizedImagesFolder } = G
+{ env, src, dest, resizedImagesFolder } = G
 bs = require 'browser-sync'
 
 gulp.task 'compile:sass', (done) ->
@@ -8,6 +8,7 @@ gulp.task 'compile:sass', (done) ->
     .pipe $.cssGlobbing {
       extensions: ['.sass', '.scss']
     }
+    .pipe $.preprocess({context: { env: env }})
     .pipe $.sass.sync({
       precision: 10
       includePaths: [
@@ -17,7 +18,7 @@ gulp.task 'compile:sass', (done) ->
     })
     .pipe $.postcss([
       require('autoprefixer')({ browsers: ['last 1 version', 'ie 10', '> 1%'] })
-      require('postcss-assets')({ basePath: 'build/', loadPaths: [resizedImagesFolder] })
+      require('postcss-assets')({ basePath: 'build/', loadPaths: [resizedImagesFolder.replace('/', '')] })
     ])
     .on 'error', (err) ->
       $.util.log $.util.colors.red(err.toString())

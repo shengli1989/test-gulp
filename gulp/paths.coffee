@@ -13,6 +13,7 @@ src =
   pages: "#{basePath.src}view/pages/"
   data: "#{basePath.src}view/data/"
   images: "#{basePath.src}images/"
+  svgSprites: "#{basePath.src}svg_sprites/"
 
 dest =
   styles: "#{basePath.dest}assets/stylesheets/"
@@ -20,6 +21,7 @@ dest =
   images: "#{basePath.dest}assets/images/"
   pages: "#{basePath.dest}"
 
-resizedImagesFolder = 'assets/images/r/'
+resizedImagesFolder = '/assets/images/r/'
+spritesUrl = '/assets/images/sprite.svg'
 
-module.exports = { rootPath, basePath, src, dest, resizedImagesFolder }
+module.exports = { rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl }
