@@ -1,12 +1,16 @@
-{ src, dest } = G
+{ src, dest, logger, checkExistence } = G
 which = require('npm-which')(__dirname)
+glob = require 'glob'
+
 
 gulp.task 'images:sketch', ->
   # to skip this task for windows user
   try
     which.sync('sketchtool')
-  catch error
-    return $.util.log(error)
+  catch err
+    return logger.warn(err)
+
+  checkExistence "#{src.sketch}*.sketch", 'sketch', src.sketch
 
   gulp.src "#{src.sketch}*.sketch"
     .pipe $.sketch

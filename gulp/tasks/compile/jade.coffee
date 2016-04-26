@@ -1,8 +1,9 @@
-{ basePath, src, dest } = G
+{ basePath, src, dest, checkExistence } = G
 
 path = require 'path'
 assign = require 'lodash/assign'
 helpers = require './jade_helpers'
+glob = require 'glob'
 
 getData = (file) ->
   relativePagePath = file.path.replace(src.pages, '').replace('.jade', '')
@@ -11,8 +12,9 @@ getData = (file) ->
   assign(specificData, helpers)
 
 gulp.task 'compile:jade', ->
+  checkExistence("#{src.pages}**/!(_*).jade", 'jade', src.pages)
+
   gulp.src(["#{src.pages}**/*.jade", "!#{src.pages}**/_*.jade"])
-    .pipe $.plumber()
     .pipe $.data(getData)
     .pipe $.jade({
         pretty: true

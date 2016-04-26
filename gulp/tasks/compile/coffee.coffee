@@ -1,4 +1,4 @@
-{ basePath, src, dest } = G
+{ basePath, src, dest, checkExistence } = G
 
 browserify = require 'browserify'
 coffeeify  = require 'coffeeify'
@@ -7,8 +7,11 @@ glob       = require 'glob'
 es         = require 'event-stream'
 
 gulp.task 'compile:coffee', (cb) ->
-  glob "#{src.scripts}!(_*).coffee", (err, files) ->
-    cb(err) if err
+  pat = "#{src.scripts}!(_*).coffee"
+  checkExistence(pat, 'coffee', src.scripts)
+
+  glob pat, (err, files) ->
+    return cb() if !files.length
 
     tasks = files.map (entry) ->
       browserify(

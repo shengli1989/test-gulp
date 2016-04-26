@@ -1,4 +1,4 @@
-{ basePath, src } = G
+{ basePath, src, logger, checkExistence } = G
 
 fs = require 'fs'
 jsonSass = require 'json-sass'
@@ -12,15 +12,20 @@ gulp.task 'compile:variables_transform_source', ->
 gulp.task 'compile:variables', ['compile:variables_transform_source'], ->
   jsonFile = './.tmp/shared.json'
 
-  fs.createReadStream(jsonFile)
-    .pipe jsonSass(
-      prefix:
-        """// Generated from shared-config.json, DO NOT modify this directly.
+  try
+    fs.accessSync(jsonFile, fs.F_OK)
+    fs.createReadStream(jsonFile)
+      .pipe jsonSass(
+        prefix:
+          """// Generated from shared-config.json, DO NOT modify this directly.
 
-        $theme: """
-    )
-    .pipe source(jsonFile)
-    .pipe $.rename('_shared-config.scss')
-    .pipe gulp.dest(src.styles)
+          $theme: """
+      )
+      .pipe source(jsonFile)
+      .pipe $.rename('_shared-config.scss')
+      .pipe gulp.dest(src.styles)
 
-  require('del')('./.tmp')
+    require('del')('./.tmp')
+
+  catch err
+    logger.alert 'some problem with compile:variables_transform_source'

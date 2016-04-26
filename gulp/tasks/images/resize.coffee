@@ -1,7 +1,14 @@
-{ basePath, src, dest } = G
+{ basePath, src, dest, logger } = G
 
-gulp.task 'images:resize', ->
+fs = require 'fs'
+
+gulp.task 'images:resize', (cb) ->
   config = require("#{basePath.config}image-breakpoints")
+
   gulp.src(["#{dest.images}**/*", "!#{dest.images}{r,r/**/*}"])
-    .pipe $.responsive.apply(null, config)
+    .pipe $.responsive.call(null, config, {
+      errorOnUnusedImage: false
+      errorOnUnusedConfig: false
+      passThroughUnused: true
+    })
     .pipe gulp.dest("#{dest.images}r/")

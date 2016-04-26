@@ -24,8 +24,8 @@ helpers = assign(metaData, sharedConfig,
   getData: readData
   moment: require 'moment'
   mq:
-    tablet: "(min-width: #{sharedConfig.breakpoints.tablet})"
-    desktop: "(min-width: #{sharedConfig.breakpoints.desktop})"
+    tablet: "(min-width: #{sharedConfig?.breakpoints?.tablet})"
+    desktop: "(min-width: #{sharedConfig?.breakpoints?.desktop})"
 )
 
 module.exports = helpers
