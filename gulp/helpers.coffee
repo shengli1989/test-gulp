@@ -2,7 +2,6 @@
 
 fs = require 'fs'
 yaml = require 'js-yaml'
-env = require('yargs').argv.env || 'dev'
 
 readYml = (dir, fileName) ->
   filePath = "#{dir}#{fileName}.yml"

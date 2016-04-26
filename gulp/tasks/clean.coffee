@@ -1,5 +1,7 @@
 { basePath } = G
 del = require 'del'
+vinylPaths = require 'vinyl-paths'
 
 gulp.task 'clean', ->
-  del(basePath.dest)
+  gulp.src basePath.dest
+    .pipe vinylPaths(del)

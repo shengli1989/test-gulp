@@ -1,4 +1,4 @@
-{ env, logger, basePath, src } = G
+{ logger, basePath, src } = G
 bs = require 'browser-sync'
 runSequence = require 'run-sequence'
 reload = bs.reload
@@ -7,7 +7,7 @@ spawn = require('child_process').spawn
 
 gulp.task 'gulp-reload', ->
   logger.info('gulpfile changed')
-  spawn('gulp', ['default', '--env', env], {stdio: 'inherit'})
+  spawn('gulp', ['default', '--env', argv.env], {stdio: 'inherit'})
   process.exit()
 
 gulp.task 'dev-server', ->

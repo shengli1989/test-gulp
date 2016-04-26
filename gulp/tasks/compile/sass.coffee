@@ -1,4 +1,4 @@
-{ env, src, dest, resizedImagesFolder } = G
+{ src, dest, resizedImagesFolder } = G
 bs = require 'browser-sync'
 
 gulp.task 'compile:sass', (done) ->
@@ -8,7 +8,7 @@ gulp.task 'compile:sass', (done) ->
     .pipe $.cssGlobbing {
       extensions: ['.sass', '.scss']
     }
-    .pipe $.preprocess({context: { env: env }})
+    .pipe $.preprocess({context: { env: argv.env }})
     .pipe $.sass.sync({
       precision: 10
       includePaths: [

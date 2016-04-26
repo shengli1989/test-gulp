@@ -1,18 +1,16 @@
 run = require 'run-sequence'
-env = require('yargs').argv.env || 'dev'
 
 # Global variables
 require './gulp/aliases'
 { rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl } = require './gulp/paths'
 { readConfig, readData, logger } = require './gulp/helpers'
 
-global.G = { env, rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl, readConfig, readData, logger }
+global.G = { rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl, readConfig, readData, logger }
 
-logger.info "current environment: #{env}"
+logger.info "current environment: #{argv.env}"
 
 # Load sub tasks
 require('require-dir')('./gulp/tasks', {recurse: true})
-
 
 # Top-level tasks
 gulp

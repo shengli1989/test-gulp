@@ -1,4 +1,4 @@
-{ env, readConfig, readData, resizedImagesFolder, spritesUrl } = G
+{ readConfig, readData, resizedImagesFolder, spritesUrl } = G
 
 sample = require 'lodash/sample'
 sampleSize = require 'lodash/sampleSize'
@@ -18,7 +18,7 @@ helpers = assign(metaData, sharedConfig,
   zh_lorem_paragraphs: (int) -> sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
   image_url: (name) -> "#{resizedImagesFolder}#{name}"
   sprites_url: spritesUrl
-  env: env
+  env: argv.env
   sample: sample
   sampleSize: sampleSize
   getData: readData
