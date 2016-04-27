@@ -4,9 +4,15 @@ path = require 'path'
 assign = require 'lodash/assign'
 getHelpers = require './jade_helpers'
 glob = require 'glob'
+es = require 'event-stream'
+fs = require 'fs'
 
-getData = (file) ->
-  pagePath = file.path.replace(src.pages, '').replace('.jade', '')
+jadeOptions =
+  pretty: !argv.minify
+  basedir: "#{basePath.src}/view"
+
+getData = (entry) ->
+  pagePath = entry.replace(src.pages, '').replace('.jade', '')
   pageLevel = pagePath.split('/').length - 1
 
   pageLevelString = []
@@ -19,13 +25,35 @@ getData = (file) ->
 
   return assign(specificData, getHelpers(pageLevelString))
 
-gulp.task 'compile:jade', ->
-  checkExistence("#{src.pages}**/!(_*).jade", 'jade', src.pages)
+rootToRelativeReplacerFn = (pageLevelString) ->
+  (match, href) ->
+    href = href.replace('/', '')
+    index = ''
 
-  gulp.src(["#{src.pages}**/*.jade", "!#{src.pages}**/_*.jade"])
-    .pipe $.data(getData)
-    .pipe $.jade({
-        pretty: !argv.minify
-        basedir: "#{basePath.src}/view"
-      })
-    .pipe gulp.dest(dest.pages)
+    try
+      fs.accessSync("#{src.pages}#{href}.jade", fs.F_OK)
+    catch err
+      index = if href.length then '/index' else 'index'
+
+    "a href=\"#{pageLevelString}#{href}#{index}.html\""
+
+gulp.task 'compile:jade', (cb) ->
+  pat = "#{src.pages}**/!(_*).jade"
+  checkExistence(pat, 'jade', src.pages)
+
+  glob pat, (err, files) ->
+    return cb() if !files.length
+
+    tasks = files.map (entry) ->
+      pathClips = path.dirname(entry).split('pages/')
+      page = pathClips[1] || ''
+      data = getData(entry)
+      replacer = rootToRelativeReplacerFn(data.pageLevelString)
+
+      gulp.src(entry)
+        .pipe $.data(data)
+        .pipe $.jade(jadeOptions)
+        .pipe $.if(argv.archive, $.replace(/a href="(\/[^\/\"\'][^\"\']*|\/)"/g, replacer))
+        .pipe gulp.dest(dest.pages + page)
+
+    es.merge(tasks).on('end', cb)

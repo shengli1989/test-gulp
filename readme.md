@@ -10,20 +10,23 @@
   - [x] jade support
   - [x] sourcemap
   - [x] customizable helpers
+  - [ ] customizable header
   - [x] minify
 - css
   - [x] sass support
   - [x] globbing import
   - [x] autoprefix
   - [x] postcss-assets
+  - [ ] customizable header
   - [x] sourcemap
   - [x] minify
 - javascripts
   - [x] coffee support
-  - [x] sourcemap
   - [x] browserify
-  - [x] uglify
+  - [ ] customizable header
   - [ ] coffeelint
+  - [x] sourcemap
+  - [x] uglify
 - assets
   - [x] imagemin
   - [x] auto resize with breakpoints
@@ -33,7 +36,7 @@
 
 ## others
 - archive
-  - [ ] archive with timestamp, branch name & env
+  - [x] archive with timestamp, branch name & env
   - [ ] review panel
 - args
   - [x] `[--env <dev|prod>]`
