@@ -20,7 +20,7 @@ gulp.task 'compile:sass', (done) ->
     })
     .pipe $.postcss([
       require('autoprefixer')({ browsers: ['last 1 version', 'ie 10', '> 1%'] })
-      require('postcss-assets')({ basePath: 'build/', loadPaths: [resizedImagesFolder.replace('/', '')] })
+      require('postcss-assets')({ basePath: 'build/', loadPaths: [resizedImagesFolder] })
     ])
     .on 'error', (err) ->
       logger.alert err.toString()

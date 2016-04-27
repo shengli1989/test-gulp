@@ -63,6 +63,7 @@
     "jquery": "^2.2.0",
     "jstransformer-markdown": "^1.1.0",
     "normalize.css": "^3.0.3",
+    "pug": "^0.1.0",
     "susy": "^2.2.12"
   }
 }

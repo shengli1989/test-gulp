@@ -3,6 +3,7 @@
 sample = require 'lodash/sample'
 sampleSize = require 'lodash/sampleSize'
 assign = require 'lodash/assign'
+jade = require 'pug'
 
 sharedConfig = readConfig('shared')
 
@@ -13,11 +14,9 @@ sentenceHowl = ["一分錢一分貨麻，那就隨便做囉！","請不要用手
 metaData = readData('meta')
 
 helpers = assign(metaData, sharedConfig,
-  zh_lorem_sentence: -> sample(sentenceHowl)
-  zh_lorem_sentences: (int) -> sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
-  zh_lorem_paragraphs: (int) -> sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
-  image_url: (name) -> "#{resizedImagesFolder}#{name}"
-  sprites_url: spritesUrl
+  sprites_url: (name) ->
+    rel = if argv.relative then '' else '/'
+    "#{rel}#{spritesUrl}##{name}"
   env: argv.env
   sample: sample
   sampleSize: sampleSize
@@ -26,6 +25,27 @@ helpers = assign(metaData, sharedConfig,
   mq:
     tablet: "(min-width: #{sharedConfig?.breakpoints?.tablet})"
     desktop: "(min-width: #{sharedConfig?.breakpoints?.desktop})"
+
+  zh_lorem_sentence: ->
+    sample(sentenceHowl)
+
+  zh_lorem_sentences: (int) ->
+    sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
+
+  zh_lorem_paragraphs: (int) ->
+    sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
+
+  image_url: (name) ->
+    rel = if argv.relative then '' else '/'
+    "#{rel}#{resizedImagesFolder}#{name}"
+
+  style_tag: (name) ->
+    path = G.getCssPath(name, argv.relative)
+    jade.render "link(rel='stylesheet' href='#{path}')"
+
+  script_tag: (name) ->
+    path = G.getJsPath(name, argv.relative)
+    jade.render "script(src='#{path}')"
 )
 
 module.exports = helpers

@@ -8,15 +8,10 @@ meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale
 //- meta(name='msapplication-TileColor' content='#FFFFFF')
 //- meta(name='msapplication-TileImage' content='/images/favicon/favicon-144.png')
 
-link(rel='stylesheet' href='/assets/stylesheets/all.css')
-
-// [if IE]
-  link(rel='stylesheet' href='/assets/stylesheets/ie.css')
-
-// [if lt IE 9]
-  script(src='//html5shim.googlecode.com/svn/trunk/html5.js')
-
-script(src='https://rawgit.com/jonathantneal/svg4everybody/master/dist/svg4everybody.js')
+!= style_tag('all')
+| <!-- [if IE] #[!= style_tag('ie')] -->
+| <!-- [if lt IE 9] #[!= script_tag('http://html5shim.googlecode.com/svn/trunk/html5.js')] -->
+!= script_tag('https://rawgit.com/jonathantneal/svg4everybody/master/dist/svg4everybody.js')
 script.
   svg4everybody()
   var breakpoints = !{JSON.stringify(breakpoints)}
