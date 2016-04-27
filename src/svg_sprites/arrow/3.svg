@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 3.7.2 (28276) - http://www.bohemiancoding.com/sketch -->
-    <title>arrow/3</title>
-    <desc>Created with sketchtool.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="arrow/3" fill="#2A2630">
-            <g id="Rectangle-348">
-                <path d="M11.5649712,24.1923882 L17.0502525,24.1923882 C17.6025373,24.1923882 18.0502525,24.6401034 18.0502525,25.1923882 C18.0502525,25.7446729 17.6025373,26.1923882 17.0502525,26.1923882 L9.05025253,26.1923882 C8.49796778,26.1923882 8.05025253,25.7446729 8.05025253,25.1923882 L8.05025253,17.1923882 C8.05025253,16.6401034 8.49796778,16.1923882 9.05025253,16.1923882 C9.60253728,16.1923882 10.0502525,16.6401034 10.0502525,17.1923882 L10.0502525,22.8786797 L25.8763465,7.05258573 C26.2666842,6.66224797 26.9023689,6.65972824 27.2928932,7.05025253 C27.6861402,7.44349949 27.6823729,8.07498641 27.29056,8.46679929 L11.5649712,24.1923882 Z" transform="translate(18.000000, 16.142136) rotate(-135.000000) translate(-18.000000, -16.142136) "></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><title>arrow/3</title><path d="M28.243 15l-3.88-3.88a1 1 0 0 1 1.415-1.413l5.657 5.657a1 1 0 0 1 0 1.414l-5.657 5.657a1 1 0 0 1-1.414-1.414l4.02-4.02H6.005a1 1 0 1 1 0-2h22.24z" fill="#2A2630" fill-rule="evenodd"/></svg>

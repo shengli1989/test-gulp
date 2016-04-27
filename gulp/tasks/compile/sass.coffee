@@ -6,7 +6,7 @@ gulp.task 'compile:sass', (done) ->
 
   gulp.src("#{src.styles}*.sass")
     .pipe $.plumber()
-    .pipe $.sourcemaps.init()
+    .pipe $.if(!argv.minify, $.sourcemaps.init())
     .pipe $.cssGlobbing {
       extensions: ['.sass', '.scss']
     }
@@ -26,7 +26,8 @@ gulp.task 'compile:sass', (done) ->
       logger.alert err.toString()
       done()
       bs.stream()
-    .pipe $.sourcemaps.write('.')
+    .pipe $.if(!argv.minify, $.sourcemaps.write('.'))
+    .pipe $.if(argv.minify, $.cssnano({discardComments: {removeAll: true}}))
     .pipe gulp.dest(dest.styles)
     .pipe $.filter(['**/*.css'])
     .pipe bs.stream()

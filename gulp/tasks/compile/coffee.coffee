@@ -3,6 +3,7 @@
 browserify = require 'browserify'
 coffeeify  = require 'coffeeify'
 source     = require 'vinyl-source-stream'
+buffer     = require 'vinyl-buffer'
 glob       = require 'glob'
 es         = require 'event-stream'
 
@@ -25,12 +26,12 @@ gulp.task 'compile:coffee', (cb) ->
           console.log(err.toString())
           @emit('end')
         .pipe source(entry)
-        .pipe(
-          $.rename {
+        .pipe $.rename {
             dirname: ''
             extname: '.js'
           }
-        )
+        .pipe buffer()
+        .pipe $.if(argv.minify, $.uglify())
         .pipe gulp.dest(dest.scripts)
 
     es.merge(tasks).on('end', cb)

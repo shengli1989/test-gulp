@@ -28,6 +28,7 @@ gulp.task 'images:sketch', (cb) ->
 
       gulp.src entry
         .pipe $.sketch(options)
+        .pipe $.imagemin {progressive: true}
         .pipe gulp.dest(imageDest)
 
     es.merge(tasks).on('end', cb)

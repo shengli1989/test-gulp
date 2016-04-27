@@ -1,8 +1,11 @@
 # features
+## general
 - [x] share data with js & html (build time)
 - [x] browserSync
 - [x] auto generate sitemap.xml
 - [ ] archive with timestamp, branch name & env
+
+## compile
 - html
   - [x] jade support
   - [x] sourcemap
@@ -28,8 +31,8 @@
   - [x] export slice from sketch
   - [x] sketch -> svg sprites
 - args
-  - [x] env
-  - [ ] minify
+  - [x] `[--env <dev|prod>]`
+  - [x] `[--minify]`
 
 # 安裝環境
 1. 裝 [brew](http://brew.sh/index_zh-tw.html)

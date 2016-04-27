@@ -19,8 +19,7 @@ run = require 'run-sequence'
 gulp
   .task 'images',  (cb) -> run(['images:sketch', 'images:copy'], 'images:resize', 'images:svg-sprites', cb)
   .task 'compile', (cb) -> run('compile:variables', ['compile:jade', 'compile:sass', 'compile:coffee'], cb)
-  .task 'minify',  (cb) -> run(['minify:html', 'minify:css', 'minify:js'], cb)
+  .task 'main',    (cb) -> run('clean', 'images', 'compile', cb)
 
 gulp
-  .task 'default', (cb) -> run('clean', 'images', 'compile', 'dev-server', cb)
-  .task 'build',   (cb) -> run('clean', 'images', 'compile', 'minify', 'sitemap', cb)
+  .task 'default', (cb) -> run('main', 'dev-server', cb)

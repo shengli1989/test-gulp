@@ -17,7 +17,7 @@ gulp.task 'compile:jade', ->
   gulp.src(["#{src.pages}**/*.jade", "!#{src.pages}**/_*.jade"])
     .pipe $.data(getData)
     .pipe $.jade({
-        pretty: true
+        pretty: !argv.minify
         basedir: "#{basePath.src}/view"
       })
     .pipe gulp.dest(dest.pages)
