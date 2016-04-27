@@ -60,6 +60,7 @@
     "yargs": "^4.6.0"
   },
   "dependencies": {
+    "gulp-replace": "^0.5.4",
     "jquery": "^2.2.0",
     "jstransformer-markdown": "^1.1.0",
     "normalize.css": "^3.0.3",

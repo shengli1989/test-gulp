@@ -2,14 +2,22 @@
 
 path = require 'path'
 assign = require 'lodash/assign'
-helpers = require './jade_helpers'
+getHelpers = require './jade_helpers'
 glob = require 'glob'
 
 getData = (file) ->
-  relativePagePath = file.path.replace(src.pages, '').replace('.jade', '')
+  pagePath = file.path.replace(src.pages, '').replace('.jade', '')
+  pageLevel = pagePath.split('/').length - 1
+
+  pageLevelString = []
+  pageLevelString.push('../') for i in [0...pageLevel] by 1
+  pageLevelString = pageLevelString.join('')
+
   specificData =
-    currentPage: relativePagePath.replace(/\//g, '_')
-  return assign(specificData, helpers)
+    currentPage: pagePath.replace(/\//g, '_')
+    pageLevelString: pageLevelString
+
+  return assign(specificData, getHelpers(pageLevelString))
 
 gulp.task 'compile:jade', ->
   checkExistence("#{src.pages}**/!(_*).jade", 'jade', src.pages)

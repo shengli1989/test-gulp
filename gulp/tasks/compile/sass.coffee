@@ -1,4 +1,4 @@
-{ src, dest, resizedImagesFolder, checkExistence } = G
+{ src, dest, checkExistence } = G
 bs = require 'browser-sync'
 
 gulp.task 'compile:sass', (done) ->
@@ -20,7 +20,7 @@ gulp.task 'compile:sass', (done) ->
     })
     .pipe $.postcss([
       require('autoprefixer')({ browsers: ['last 1 version', 'ie 10', '> 1%'] })
-      require('postcss-assets')({ basePath: 'build/', loadPaths: [resizedImagesFolder] })
+      require('postcss-assets')({ basePath: 'build/assets/', loadPaths: ['images/r/'] })
     ])
     .on 'error', (err) ->
       logger.alert err.toString()
@@ -28,6 +28,7 @@ gulp.task 'compile:sass', (done) ->
       bs.stream()
     .pipe $.if(!argv.minify, $.sourcemaps.write('.'))
     .pipe $.if(argv.minify, $.cssnano({discardComments: {removeAll: true}}))
+    .pipe $.if(argv.archive, $.replace("url('/", "url('../"))
     .pipe gulp.dest(dest.styles)
     .pipe $.filter(['**/*.css'])
     .pipe bs.stream()

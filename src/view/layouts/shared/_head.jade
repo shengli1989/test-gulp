@@ -11,8 +11,9 @@ meta(name='viewport' content='width=device-width, initial-scale=1, maximum-scale
 != style_tag('all')
 | <!-- [if IE] #[!= style_tag('ie')] -->
 | <!-- [if lt IE 9] #[!= script_tag('http://html5shim.googlecode.com/svn/trunk/html5.js')] -->
-!= script_tag('https://rawgit.com/jonathantneal/svg4everybody/master/dist/svg4everybody.js')
+if !isArchive
+  != script_tag('https://rawgit.com/jonathantneal/svg4everybody/master/dist/svg4everybody.js')
+  script.
+    svg4everybody()
 script.
-  svg4everybody()
   var breakpoints = !{JSON.stringify(breakpoints)}
-

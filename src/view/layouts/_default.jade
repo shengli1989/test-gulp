@@ -1,6 +1,5 @@
 doctype html
 html(lang='zh-TW' class="page-#{currentPage}")
-  include /mixin/_icon
   include /data/global
   head
     block head
@@ -15,6 +14,9 @@ html(lang='zh-TW' class="page-#{currentPage}")
     block og
       include ./shared/_og
   body
+    include /mixin/_icon
+    if isArchive
+      include ./shared/_svg-sprites
     .wrapper
       if page_name
         p= page_name

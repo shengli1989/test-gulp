@@ -1,4 +1,4 @@
-{ readConfig, readData, resizedImagesFolder, spritesUrl } = G
+{ readConfig, readData, spritesUrl } = G
 
 sample = require 'lodash/sample'
 sampleSize = require 'lodash/sampleSize'
@@ -13,39 +13,40 @@ sentenceHowl = ["一分錢一分貨麻，那就隨便做囉！","請不要用手
 
 metaData = readData('meta')
 
-helpers = assign(metaData, sharedConfig,
-  sprites_url: (name) ->
-    rel = if argv.relative then '' else '/'
-    "#{rel}#{spritesUrl}##{name}"
-  env: argv.env
-  sample: sample
-  sampleSize: sampleSize
-  getData: readData
-  moment: require 'moment'
-  mq:
-    tablet: "(min-width: #{sharedConfig?.breakpoints?.tablet})"
-    desktop: "(min-width: #{sharedConfig?.breakpoints?.desktop})"
+getHelpers = (pageLevelString) ->
+  assign(metaData, sharedConfig,
+    sprites_url: (name) ->
+      rel = if argv.relative then pageLevelString else '/'
+      "#{rel}#{spritesUrl}##{name}"
+    env: argv.env
+    isArchive: !!argv.archive
+    sample: sample
+    sampleSize: sampleSize
+    getData: readData
+    moment: require 'moment'
+    mq:
+      tablet: "(min-width: #{sharedConfig?.breakpoints?.tablet})"
+      desktop: "(min-width: #{sharedConfig?.breakpoints?.desktop})"
 
-  zh_lorem_sentence: ->
-    sample(sentenceHowl)
+    zh_lorem_sentence: ->
+      sample(sentenceHowl)
 
-  zh_lorem_sentences: (int) ->
-    sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
+    zh_lorem_sentences: (int) ->
+      sampleSize(sentenceStart, int).concat([sample(sentenceEnd)]).join('')
 
-  zh_lorem_paragraphs: (int) ->
-    sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
+    zh_lorem_paragraphs: (int) ->
+      sampleSize(sentenceStart, int * 4).concat([sample(sentenceEnd)]).join('')
 
-  image_url: (name) ->
-    rel = if argv.relative then '' else '/'
-    "#{rel}#{resizedImagesFolder}#{name}"
+    image_url: (name) ->
+      G.getImageUrl(name, pageLevelString)
 
-  style_tag: (name) ->
-    path = G.getCssPath(name, argv.relative)
-    jade.render "link(rel='stylesheet' href='#{path}')"
+    style_tag: (name) ->
+      path = G.getCssPath(name, pageLevelString)
+      jade.render "link(rel='stylesheet' href='#{path}')"
 
-  script_tag: (name) ->
-    path = G.getJsPath(name, argv.relative)
-    jade.render "script(src='#{path}')"
-)
+    script_tag: (name) ->
+      path = G.getJsPath(name, pageLevelString)
+      jade.render "script(src='#{path}')"
+  )
 
-module.exports = helpers
+module.exports = getHelpers

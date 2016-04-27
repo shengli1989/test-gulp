@@ -24,20 +24,24 @@ dest =
   images: "#{basePath.dest}assets/images/"
   pages: "#{basePath.dest}"
 
+resizedImagesFolder = 'assets/images/r/'
+spritesUrl = 'assets/images/sprite.svg'
+
 getPathFn = (folder, extension) ->
-  (name, isRelative) ->
+  (name, pageLevelString) ->
     if name.indexOf('//') < 0
-      rel = if !isRelative then '/' else ''
+      rel = if argv.relative then pageLevelString else '/'
       path = "#{rel}#{folder}#{name}"
     else
       path = name
     path += extension if name.indexOf(extension) < 0
     path
 
+getImageUrl = (name, pageLevelString) ->
+  rel = if argv.relative then pageLevelString else '/'
+  "#{rel}#{resizedImagesFolder}#{name}"
+
 getCssPath = getPathFn('assets/stylesheets/', '.css')
 getJsPath = getPathFn('assets/javascripts/', '.js')
 
-resizedImagesFolder = 'assets/images/r/'
-spritesUrl = 'assets/images/sprite.svg'
-
-assign(G, {rootPath, basePath, src, dest, resizedImagesFolder, spritesUrl, getCssPath, getJsPath})
+assign(G, {rootPath, basePath, src, dest, spritesUrl, getImageUrl, getCssPath, getJsPath})
