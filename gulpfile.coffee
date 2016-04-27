@@ -23,3 +23,6 @@ gulp
 
 gulp
   .task 'default', (cb) -> run('main', 'dev-server', cb)
+  .task 'save',    (cb) ->
+    argv.minify = true
+    run('main', 'archive', cb)

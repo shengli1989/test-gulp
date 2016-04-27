@@ -7,6 +7,7 @@ basePath =
   src: "#{rootPath}/src/"
   dest: "#{rootPath}/build/"
   config: "#{rootPath}/config/"
+  archive: "#{rootPath}/save/"
 
 src =
   styles: "#{basePath.src}sass/"
