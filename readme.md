@@ -77,6 +77,7 @@
 - `gulp build`: 相當於 fireapp 的 build
   - `gulp minify`: 將 build 資料夾內的檔案壓縮
   - `gulp sitemap`: 根據 build 資料夾內的 html 產生 sitemap.xml
+- `gulp save [-o] [-m <comment>]`: 輸出成靜態檔案
 
 # gulp task 寫法
 根據 task 的類型，在 gulp 資料夾下找個位置開啟一個新的 .js 或 .coffee 檔
@@ -106,6 +107,7 @@ gulp.task 'task-name', ->
 ├── gulpfile.coffee: gulp 入口檔案
 ├── node_modules: 透過 npm 安裝的相依套件
 ├── package.json: 專案設定檔
+├── save: 經由 `gulp save` 產生的 archive
 └── readme.md: 說明檔
 ```
 
