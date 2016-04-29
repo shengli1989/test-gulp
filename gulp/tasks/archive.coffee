@@ -1,6 +1,7 @@
 moment = require 'moment'
 git = require 'git-rev'
 del = require 'del'
+runSequence = require 'run-sequence'
 
 {toSnakeCase, trim} = require 'strman'
 {dest, archive} = G.basePath
@@ -21,3 +22,5 @@ gulp.task 'archive', (cb) ->
 
     gulp.src "#{dest}/**/*"
       .pipe gulp.dest("#{archive}/#{folderName}")
+      .on 'end', ->
+        runSequence('deploy') if argv.deploy
