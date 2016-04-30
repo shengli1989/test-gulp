@@ -3,7 +3,7 @@ git = require 'git-rev'
 del = require 'del'
 runSequence = require 'run-sequence'
 
-{toSnakeCase, trim} = require 'strman'
+{trim} = require 'strman'
 {dest, archive} = G.basePath
 
 gulp.task 'clean-archive', (cb) ->
@@ -17,7 +17,7 @@ gulp.task 'save:archive', (cb) ->
       branch.replace(/\-/g, '_').replace(/\//, '__')
     ]
 
-    folderName.push toSnakeCase(trim(argv.m)) if argv.m?
+    folderName.push encodeURIComponent(trim(argv.m)) if argv.m?
     folderName = folderName.join('-')
 
     gulp.src "#{dest}/**/*"

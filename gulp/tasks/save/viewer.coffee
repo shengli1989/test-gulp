@@ -30,17 +30,17 @@ gulp.task 'save:viewer:jade', ->
     (\d\d\d\d-\d\d-\d\d-\d\d-\d\d)- # [1] date time
     ([i|o])-                        # [2] flag
     ([a-z_]+[^-])                   # [3] branch
-    (?:-([a-z_]*))?                 # [4] comment
+    (?:-(.*))?                      # [4] encoded comment
     \n?
   ///g
 
   getParserData = (folder, datetime, flag, branch, comment) ->
-    folder: folder.replace('\n', '') + '/index.html'
+    folder: encodeURIComponent(folder.replace('\n', '')) + '/index.html'
     datetime: moment(datetime, 'YYYY-MM-DD-HH-mm')
     isInternal: flag == 'i'
     isExternal: flag != 'i'
     branch: branch.replace('__', '/').replace(/_/g, '-')
-    comment: comment?.replace(/_/g, ' ') || null
+    comment: if comment? then decodeURIComponent(comment) || null
 
   archiveData = []
   while (res = re.exec(files))?
