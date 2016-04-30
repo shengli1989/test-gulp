@@ -23,5 +23,5 @@ gulp
 
 gulp
   .task 'default', (cb) -> run('main', 'dev-server', cb)
-  .task 'save',    (cb) -> run('main', 'archive', cb)
+  .task 'save',    (cb) -> run('main', 'save:archive', 'save:viewer', cb)
   .task 'deploy',  (cb) -> run('gh-page', cb)

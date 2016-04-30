@@ -1,0 +1,102 @@
+@import '../style/color'
+@import '../style/dimension'
+@import '../style/placeholder'
+
+.Menu
+  position: fixed
+  height: 100%
+  z-index: 1
+  background: #fff
+  border-right: 1px solid $main
+  width: $side-width
+  transform: translateX( -$side-width )
+  display: flex
+  flex-direction: column
+
+  &-block
+    padding: 15px
+    & + &
+      border-top: 1px solid $main
+
+.Head
+  &-title
+    font-size: 19px
+    color: $light
+    margin-bottom: 15px
+  &-toggler
+    position: absolute
+    right: -50px
+    top: 0px
+    width: 50px
+    height: 50px
+    cursor: pointer
+    transition: right .5s
+
+    $size: 6px
+
+    &:before, &:after
+      content: ''
+      display: block
+      position: absolute
+      left: 50%
+      top: 50%
+      width: $size
+      height: $size
+      margin-left: -$size * .5
+      margin-top: -$size * .5
+      border-radius: 50%
+      background: $light
+      transition-property: width, height, margin, border-radius, background
+      transition-duration: .5s
+
+    &:hover
+      &:before, &:after
+        background: lighten($light, 15)
+
+    .is-active &
+      right: 0px
+
+      &:hover
+        &:before, &:after
+          background: $light
+      &:before, &:after
+        width: 20px
+        height: 2px
+        margin-left: -10px
+        margin-top: -1px
+        background: $main
+        border-radius: 2px
+
+    &:before
+      transform: rotateZ(45deg)
+    &:after
+      transform: rotateZ(-45deg)
+
+.Filters
+  &-item
+    @extend %button
+
+.Search
+  &-scope
+    @extend %button
+    margin-right: 10px
+
+.Results
+  overflow: auto
+  border-right: 0
+  &-list
+    margin: -15px
+  &-item
+    & + &
+      border-top: 1px solid $main
+  &-link
+    display: block
+    height: 80px
+    padding: 0 15px
+    color: $base
+    cursor: pointer
+    &:hover
+      background: rgba($light, .1)
+    &.is-active
+      position: relative
+      border-right: 4px solid lighten($light, 10)
