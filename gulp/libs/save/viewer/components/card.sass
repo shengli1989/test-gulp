@@ -1,0 +1,36 @@
+@import '../style/color'
+
+.Card
+  position: relative
+  padding-left: 35px
+  $size: 6px
+  &:after, &:before
+    content: ''
+  &:before
+    display: block
+    position: absolute
+    left: 15px
+    top: 50%
+    margin-top: -$size * .5
+    width: $size
+    height: $size
+    border: 1px solid $main
+    border-radius: 50%
+  &.is-external:before
+    border-color: $light
+    background: $light
+
+  &:after
+    height: 100%
+    width: 0
+
+  &:after, &-info
+    vertical-align: middle
+    display: inline-block
+
+  &-time
+    font-size: 11px
+  &-branch
+    font-size: 20px
+  &-comment
+    margin-top: 5px
