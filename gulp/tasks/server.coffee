@@ -10,7 +10,7 @@ gulp.task 'gulp-reload', ->
   spawn('gulp', ['default', '--env', argv.env], {stdio: 'inherit'})
   process.exit()
 
-gulp.task 'dev-server', ->
+gulp.task 'dev-server', (cb) ->
   bs
     server:
       baseDir: basePath.dest
@@ -20,7 +20,7 @@ gulp.task 'dev-server', ->
     reloadOnRestart: true
     extensions: 'html'
 
-  $.watch ["#{basePath.src}**/*.jade", "#{src.data}**/*.{yml,jade}"], rs('compile:jade', reload)
+  $.watch ["#{basePath.src}**/*.jade", "#{src.data}**/*.{yml,jade}"], -> rs('compile:jade', reload)
   $.watch "#{src.styles}**/*.{sass,scss}", -> rs('compile:sass')
   $.watch "#{src.scripts}**/*", -> rs('compile:coffee', reload)
   $.watch "#{basePath.config}shared.yml", -> rs('compile', reload)
@@ -30,3 +30,4 @@ gulp.task 'dev-server', ->
   $.watch "#{basePath.config}image-breakpoints.coffee", -> rs('images:resize', reload)
 
   $.watch ['./gulpfile.coffee', './gulp/**/*.coffee'], -> rs('gulp-reload')
+  cb()
