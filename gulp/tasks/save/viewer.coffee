@@ -31,7 +31,7 @@ gulp.task 'save:viewer:jade', ->
     ([i|o])-                        # [2] flag
     ([a-z_]+[^-])                   # [3] branch
     (?:-([a-z_]*))?                 # [4] comment
-    \n
+    \n?
   ///g
 
   getParserData = (folder, datetime, flag, branch, comment) ->
@@ -52,7 +52,7 @@ gulp.task 'save:viewer:jade', ->
     .pipe $.jade(jadeOptions)
     .pipe gulp.dest(dest)
 
-gulp.task 'save:viewer:coffee', ->
+gulp.task 'save:viewer:coffee', (cb) ->
   browserify(
       entries: ["#{root}app.coffee"]
       transform: ['coffeeify', 'vueify']
@@ -73,6 +73,7 @@ gulp.task 'save:viewer:coffee', ->
     .pipe gulp.dest(dest)
 
 gulp.task 'save:viewer', ['save:viewer:jade', 'save:viewer:coffee'], ->
+  runSequence('deploy') if argv.deploy
   bs
     server:
       baseDir: dest

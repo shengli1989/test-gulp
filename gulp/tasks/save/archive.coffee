@@ -22,6 +22,4 @@ gulp.task 'save:archive', (cb) ->
 
     gulp.src "#{dest}/**/*"
       .pipe gulp.dest("#{archive}/#{folderName}")
-      .on 'end', ->
-        return runSequence('deploy', cb) if argv.deploy
-        cb()
+      .on 'end', cb
