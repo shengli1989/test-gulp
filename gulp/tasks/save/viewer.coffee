@@ -60,9 +60,7 @@ gulp.task 'save:viewer:coffee', (cb) ->
       debug: true
     )
     .bundle()
-    .on 'error', (err) ->
-      logger.alert err.toString()
-      @emit('end')
+    .on 'error', G.onError
     .pipe source('app.coffee')
     .pipe $.rename {
         dirname: ''

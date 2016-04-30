@@ -7,8 +7,7 @@ _gulpsrc = gulp.src
 gulp.src = ->
   _gulpsrc.apply(gulp, arguments)
     .pipe $.plumber
-      errorHandler: (err) ->
-        logger.alert err.message
+      errorHandler: G.onError
 
 # Load sub tasks
 require('require-dir')('./gulp/tasks', {recurse: true})
@@ -25,3 +24,5 @@ gulp
   .task 'default', (cb) -> run('main', 'dev-server', cb)
   .task 'save',    (cb) -> run('main', 'save:archive', 'save:viewer', cb)
   .task 'deploy',  (cb) -> run('gh-page', cb)
+
+logger.info "current environment: #{argv.env}"

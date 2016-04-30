@@ -22,9 +22,7 @@ gulp.task 'compile:coffee', (cb) ->
           debug: true
         )
         .bundle()
-        .on 'error', (err) ->
-          logger.alert err.toString()
-          @emit('end')
+        .on 'error', G.onError
         .pipe source(entry)
         .pipe $.rename {
             dirname: ''
@@ -34,4 +32,4 @@ gulp.task 'compile:coffee', (cb) ->
         .pipe $.if(argv.minify, $.uglify())
         .pipe gulp.dest(dest.scripts)
 
-    es.merge(tasks).on('end', cb)
+    es.merge(tasks).on 'end', cb

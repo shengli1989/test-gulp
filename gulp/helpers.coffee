@@ -23,4 +23,15 @@ checkExistence = (pattern, task, directory) ->
     if !files.length
       logger.warn "#{task}: no files matches under #{directory}"
 
-assign(G, {readConfig, readData, checkExistence})
+onError = (err) ->
+  $.notify.onError(
+    title:    'Gulp'
+    subtitle: 'Failure!'
+    message:  "Error: <%= error.message %>"
+    sound:    'Beep'
+  )(err)
+  @emit('end')
+
+logger.alert = (msg) -> G.onError(new Error(msg))
+
+assign(G, { readConfig, readData, checkExistence, onError })

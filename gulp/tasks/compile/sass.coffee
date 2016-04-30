@@ -23,26 +23,22 @@ gulp.task 'compile:sass', (cb) ->
         './node_modules/sass-mq'
       ]
 
+  options.postcss = [
+    require('autoprefixer')(options.autoprefixer)
+    require('postcss-assets')(options.assets)
+  ]
+
   if argv.archive
     options.assets =
       basePath: 'build/assets/'
       loadPaths: ['images/r/']
 
-
   gulp.src("#{src.styles}*.sass")
-    .pipe $.plumber()
     .pipe $.if(!argv.minify, $.sourcemaps.init())
     .pipe $.cssGlobbing(options.cssGlobbing)
     .pipe $.preprocess(options.preprocess)
     .pipe $.sass.sync(options.sass)
-    .pipe $.postcss([
-      require('autoprefixer')(options.autoprefixer)
-      require('postcss-assets')(options.assets)
-    ])
-    .on 'error', (err) ->
-      logger.alert err.toString()
-      cb()
-      bs.stream()
+    .pipe $.postcss(options.postcss)
     .pipe $.if(!argv.minify, $.sourcemaps.write('.'))
     .pipe $.if(argv.minify, $.cssnano(options.cssnano))
     .pipe $.if(argv.archive, $.replace(/(url\(['|"]?)(\/)/g, "$1..$2"))

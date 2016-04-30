@@ -19,9 +19,7 @@ config =
 gulp.task 'images:svg-sprites', (cb) ->
   gulp.src("#{src.svgSprites}**/*.svg")
     .pipe $.svgSprite(config)
-    .on 'error', (err) ->
-      $.util.log $.util.colors.red(err.toString())
-      cb()
+    .on 'error', G.onError
     .pipe $.if(/[.]demo$/, $.rename('src/view/pages/demo/symbol.jade'))
     .pipe $.if(/[.]mixin$/, $.rename('src/view/mixin/_icon.jade'))
     .pipe $.if(/[.]inline$/, $.rename('src/view/layouts/shared/_svg-sprites.jade'))
