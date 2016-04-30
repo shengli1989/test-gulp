@@ -20,14 +20,16 @@ gulp.task 'dev-server', (cb) ->
     reloadOnRestart: true
     extensions: 'html'
 
-  $.watch ["#{basePath.src}**/*.jade", "#{src.data}**/*.{yml,jade}"], -> rs('compile:jade', reload)
-  $.watch "#{src.styles}**/*.{sass,scss}", -> rs('compile:sass')
-  $.watch "#{src.scripts}**/*", -> rs('compile:coffee', reload)
-  $.watch "#{basePath.config}shared.yml", -> rs('compile', reload)
-  $.watch './gulp/libs/images/svg-sprites/*.handlebars', ['images:svg-sprites']
+  [
+    ["#{basePath.src}**/*.jade", "#{src.data}**/*.{yml,jade}"], ['compile:jade', reload]
+    "#{src.styles}**/*.{sass,scss}",                            ['compile:sass']
+    "#{src.scripts}**/*",                                       ['compile:coffee', reload]
+    "#{basePath.config}shared.yml",                             ['compile', reload]
+    './gulp/libs/images/svg-sprites/*.handlebars',              ['images:svg-sprites']
+    "#{src.sketch}*.sketch",                                    ['images:sketch', 'images:resize', 'images:svg-sprites', reload]
+    "#{basePath.config}image-breakpoints.coffee",               ['images:resize', reload]
+    ['./gulpfile.coffee', './gulp/**/*.coffee'],                ['gulp-reload']
+  ].forEach (files, i, arr) ->
+    $.watch(files, -> rs.apply(null, arr[i+1])) if i % 2 == 0
 
-  $.watch "#{src.sketch}*.sketch", -> rs('images:sketch', 'images:resize', 'images:svg-sprites', reload)
-  $.watch "#{basePath.config}image-breakpoints.coffee", -> rs('images:resize', reload)
-
-  $.watch ['./gulpfile.coffee', './gulp/**/*.coffee'], -> rs('gulp-reload')
   cb()
