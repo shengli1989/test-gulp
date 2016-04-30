@@ -23,7 +23,7 @@ gulp.task 'compile:coffee', (cb) ->
         )
         .bundle()
         .on 'error', (err) ->
-          console.log(err.toString())
+          logger.alert err.toString()
           @emit('end')
         .pipe source(entry)
         .pipe $.rename {

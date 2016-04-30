@@ -24,8 +24,8 @@ gulp.task 'compile:variables', ['compile:variables_transform_source'], ->
       .pipe source(jsonFile)
       .pipe $.rename('_shared-config.scss')
       .pipe gulp.dest(src.styles)
-
-    require('del')('./.tmp')
+      .on 'end', ->
+        require('del')('./.tmp')
 
   catch err
     logger.alert 'some problem with compile:variables_transform_source'

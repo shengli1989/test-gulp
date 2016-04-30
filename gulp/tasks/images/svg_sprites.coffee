@@ -7,11 +7,11 @@ config =
       sprite: 'sprite.svg'
       render:
         demo:
-          template: './gulp/tmpl/symbol-demo.jade.handlebars'
+          template: './gulp/libs/images/svg-sprites/demo.jade.handlebars'
         inline:
-          template: './gulp/tmpl/symbol-inline.jade.handlebars'
+          template: './gulp/libs/images/svg-sprites/inline.jade.handlebars'
         mixin:
-          template: './gulp/tmpl/symbol-mixin.jade.handlebars'
+          template: './gulp/libs/images/svg-sprites/mixin.jade.handlebars'
   svg:
     xmlDeclaration: false
     doctypeDeclaration: false
