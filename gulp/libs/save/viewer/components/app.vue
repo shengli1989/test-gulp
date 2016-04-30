@@ -16,7 +16,7 @@
       'menu': require './menu.vue'
       'medium': require './medium.vue'
     created: ->
-      @currentArchive = @archives[0]
+      @currentArchive = @archives[@archives.length - 1]
     methods:
       changeArchive: (archive) ->
         @currentArchive = archive

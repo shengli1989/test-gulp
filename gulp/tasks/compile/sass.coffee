@@ -23,15 +23,15 @@ gulp.task 'compile:sass', (cb) ->
         './node_modules/sass-mq'
       ]
 
-  options.postcss = [
-    require('autoprefixer')(options.autoprefixer)
-    require('postcss-assets')(options.assets)
-  ]
-
   if argv.archive
     options.assets =
       basePath: 'build/assets/'
       loadPaths: ['images/r/']
+
+  options.postcss = [
+    require('autoprefixer')(options.autoprefixer)
+    require('postcss-assets')(options.assets)
+  ]
 
   gulp.src("#{src.styles}*.sass")
     .pipe $.if(!argv.minify, $.sourcemaps.init())
