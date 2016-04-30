@@ -1,7 +1,7 @@
 { src, dest, checkExistence } = G
 bs = require 'browser-sync'
 
-gulp.task 'compile:sass', (done) ->
+gulp.task 'compile:sass', (cb) ->
   checkExistence("#{src.styles}*.sass", 'sass', src.styles)
 
   options =
@@ -41,7 +41,7 @@ gulp.task 'compile:sass', (done) ->
     ])
     .on 'error', (err) ->
       logger.alert err.toString()
-      done()
+      cb()
       bs.stream()
     .pipe $.if(!argv.minify, $.sourcemaps.write('.'))
     .pipe $.if(argv.minify, $.cssnano(options.cssnano))

@@ -5,7 +5,7 @@ source     = require 'vinyl-source-stream'
 buffer     = require 'vinyl-buffer'
 bs         = require 'browser-sync'
 
-runSequence = require 'run-sequence'
+rs = require 'run-sequence'
 reload = bs.reload
 
 fs= require 'fs'
@@ -73,7 +73,7 @@ gulp.task 'save:viewer:coffee', (cb) ->
     .pipe gulp.dest(dest)
 
 gulp.task 'save:viewer', ['save:viewer:jade', 'save:viewer:coffee'], ->
-  runSequence('deploy') if argv.deploy
+  rs('deploy') if argv.deploy
   bs
     server:
       baseDir: dest
@@ -83,5 +83,5 @@ gulp.task 'save:viewer', ['save:viewer:jade', 'save:viewer:coffee'], ->
     reloadOnRestart: true
     extensions: 'html'
 
-  gulp.watch ["#{root}*.jade"], -> runSequence('save:viewer:jade', reload)
-  gulp.watch ["#{root}*.coffee", "#{root}**/*.{vue,sass}"], -> runSequence('save:viewer:coffee', reload)
+  $.watch ["#{root}*.jade"], -> rs('save:viewer:jade', reload)
+  $.watch ["#{root}*.coffee", "#{root}**/*.{vue,sass}"], -> rs('save:viewer:coffee', reload)
