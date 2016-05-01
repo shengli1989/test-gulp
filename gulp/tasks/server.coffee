@@ -3,22 +3,30 @@ bs = require 'browser-sync'
 rs = require 'run-sequence'
 reload = bs.reload
 
-spawn = require('child_process').spawn
+kexec = require 'kexec'
 
 gulp.task 'gulp-reload', ->
   logger.info('gulpfile changed')
-  spawn('gulp', ['default', '--env', argv.env], {stdio: 'inherit'})
-  process.exit()
+  command = [argv._.join(' ')]
+  for arg, setting of argv
+    command.push("--#{arg}", setting) if !(arg in ['$0', '_'])
+  command.push('--restart', 'true') if !argv.restart
+
+  kexec('gulp', command)
 
 gulp.task 'dev-server', (cb) ->
-  bs
+  bsOptions =
     server:
       baseDir: basePath.dest
       index: 'index.html'
     port: 9000
-    open: false
+    open: true
     reloadOnRestart: true
     extensions: 'html'
+
+  bsOptions.open = false if argv.restart
+
+  bs bsOptions
 
   [
     ["#{basePath.src}**/*.jade", "#{src.data}**/*.{yml,jade}"], ['compile:jade', reload]
