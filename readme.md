@@ -42,6 +42,10 @@
   - [x] `[--env <dev|prod>]`
   - [x] `[--minify]`
 
+# 開發環境
+- npm: 3.6.0
+- node: 5.6.0
+
 # 安裝環境
 1. 裝 [brew](http://brew.sh/index_zh-tw.html)
 `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`

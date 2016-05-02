@@ -28,9 +28,9 @@ onError = (err) ->
     title:    'Gulp'
     subtitle: 'Failure!'
     message:  "Error: <%= error.message %>"
-    sound:    'Beep'
+    sound:    'Hero'
   )(err)
-  @emit('end')
+  @emit?('end')
 
 logger.alert = (msg) -> G.onError(new Error(msg))
 

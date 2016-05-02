@@ -30,8 +30,12 @@ gulp.task 'compile:sass', (cb) ->
 
   options.postcss = [
     require('autoprefixer')(options.autoprefixer)
-    require('postcss-assets')(options.assets)
   ]
+
+  try
+    fsCSON.readFileSync "#{basePath.config}image-breakpoints.cson"
+    options.postcss.push(require('postcss-assets')(options.assets))
+  catch err
 
   gulp.src("#{src.styles}*.sass")
     .pipe $.if(!argv.minify, $.sourcemaps.init())

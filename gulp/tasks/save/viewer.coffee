@@ -76,7 +76,7 @@ gulp.task 'save:viewer', ['save:viewer:jade', 'save:viewer:coffee'], ->
     server:
       baseDir: dest
       index: 'index.html'
-    port: 9000
+    port: process.env.dev_port || 9000
     open: false
     reloadOnRestart: true
     extensions: 'html'
