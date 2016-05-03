@@ -15,10 +15,12 @@ block content
 
   hr
 
-  - var messages = getData('static-model-name').sample
+  - var posts = getData('global').posts
   ul
-    each message in messages
-      li!= message.text
+    each post in posts
+      li
+        p 標題：#[a(href=post.url)= post.title]
+        p 分類：#[a(href=post.category.url)= post.category.text]
 
   h1= zh_lorem_sentences(2)
   p= zh_lorem_paragraphs(4)

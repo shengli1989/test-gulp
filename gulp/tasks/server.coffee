@@ -33,7 +33,7 @@ gulp.task 'dev-server', (cb) ->
     "#{src.styles}**/*.{sass,scss}",                            ['compile:sass']
     "#{src.scripts}**/*",                                       ['compile:coffee', reload]
     "#{basePath.config}shared.yml",                             ['compile', reload]
-    './gulp/libs/images/svg-sprites/*.handlebars',              ['images:svg-sprites']
+    "#{basePath.libs}images/svg-sprites/*.handlebars",              ['images:svg-sprites']
     "#{src.sketch}*.sketch",                                    ['images:sketch', 'images:resize', 'images:svg-sprites', reload]
     "#{basePath.config}image-breakpoints.cson",                 ['images:resize', reload]
   ]

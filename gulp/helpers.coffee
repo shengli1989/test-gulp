@@ -15,9 +15,6 @@ readYml = (dir, fileName, cb) ->
     logger.alert "#{filePath} not found"
     cb(err) if cb?
 
-readConfig = (fileName, cb) -> readYml(basePath.config, fileName, cb)
-readData = (fileName) -> readYml(src.data, fileName)
-
 checkExistence = (pattern, task, directory) ->
   glob pattern, (err, files) ->
     if !files.length
@@ -34,4 +31,4 @@ onError = (err) ->
 
 logger.alert = (msg) -> G.onError(new Error(msg))
 
-assign(G, { readConfig, readData, checkExistence, onError })
+assign(G, { readYml, checkExistence, onError })

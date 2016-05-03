@@ -2,8 +2,8 @@
 ## general
 - [x] share data with js & html (build time)
 - [x] browserSync
-- [x] auto generate sitemap.xml
-- [ ] deploy to github page
+- [x] auto generate sitemap.xml with `--sitemap` option
+- [x] deploy to github page
 
 ## compile
 - html
@@ -37,7 +37,7 @@
 ## others
 - archive
   - [x] archive with timestamp, branch name & env
-  - [ ] review panel
+  - [x] review panel
 - args
   - [x] `[--env <dev|prod>]`
   - [x] `[--minify]`
@@ -80,8 +80,8 @@
   - `gulp dev-server`: 開啟 browserSync 並且 watch 原始檔
 - `gulp build`: 相當於 fireapp 的 build
   - `gulp minify`: 將 build 資料夾內的檔案壓縮
-  - `gulp sitemap`: 根據 build 資料夾內的 html 產生 sitemap.xml
-- `gulp save [-o] [-m <comment>]`: 輸出成靜態檔案
+- `gulp save [-o] [-m <comment>][--deploy]`: 輸出成靜態檔案並 deploy 到 github
+- `gulp deploy`: 將目前 save 的狀態 deploy
 
 # gulp task 寫法
 根據 task 的類型，在 gulp 資料夾下找個位置開啟一個新的 .js 或 .coffee 檔
@@ -104,6 +104,7 @@ gulp.task 'task-name', ->
 # 檔案結構
 ```
 .
+├── data: jade 和 coffee 的資料來源
 ├── config：設定檔
 ├── src: 工作檔
 ├── build: 最後生成的檔案目錄
@@ -119,8 +120,8 @@ gulp.task 'task-name', ->
 # 工作檔結構
 ```
 src
+├── data
 ├── view
-│   ├── data
 │   ├── layouts
 │   ├── mixin
 │   ├── pages

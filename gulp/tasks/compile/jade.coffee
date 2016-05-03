@@ -2,10 +2,11 @@
 
 path = require 'path'
 assign = require 'lodash/assign'
-getHelpers = require './jade_helpers'
+genJadeHelpers = require "#{basePath.libs}compile/jade"
 glob = require 'glob'
 es = require 'event-stream'
 fs = require 'fs'
+rs = require 'run-sequence'
 
 jadeOptions =
   pretty: !argv.minify
@@ -23,7 +24,7 @@ getData = (entry) ->
     currentPage: pagePath.replace(/\//g, '_')
     pageLevelString: pageLevelString
 
-  return assign(specificData, getHelpers(pageLevelString))
+  return assign(specificData, genJadeHelpers(pageLevelString))
 
 rootToRelativeReplacerFn = (pageLevelString) ->
   (match, href) ->
@@ -53,7 +54,12 @@ gulp.task 'compile:jade', (cb) ->
       gulp.src(entry)
         .pipe $.data(data)
         .pipe $.jade(jadeOptions)
-        .pipe $.if(argv.archive, $.replace(/a href="(\/[^\/\"\'][^\"\']*|\/)"/g, replacer))
+        .pipe $.if(argv.relative, $.replace(/a href="(\/[^\/\"\'][^\"\']*|\/)"/g, replacer))
         .pipe gulp.dest(dest.pages + page)
 
-    es.merge(tasks).on('end', cb)
+    es.merge(tasks).on('end', ->
+      if argv.sitemap
+        rs('sitemap', cb)
+      else
+        cb()
+    )

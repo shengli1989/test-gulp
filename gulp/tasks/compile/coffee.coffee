@@ -2,6 +2,7 @@
 
 browserify = require 'browserify'
 coffeeify  = require 'coffeeify'
+aliasify   = require 'aliasify'
 source     = require 'vinyl-source-stream'
 buffer     = require 'vinyl-buffer'
 glob       = require 'glob'
@@ -17,7 +18,7 @@ gulp.task 'compile:coffee', (cb) ->
     tasks = files.map (entry) ->
       browserify(
           entries: [entry]
-          transform: ['coffeeify']
+          transform: ['coffeeify', 'aliasify']
           extensions: ['.coffee']
           debug: true
         )

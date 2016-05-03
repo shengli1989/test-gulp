@@ -8,13 +8,14 @@ basePath =
   dest: "#{rootPath}/build/"
   config: "#{rootPath}/config/"
   archive: "#{rootPath}/save/"
+  libs: "#{rootPath}/gulp/libs/"
+  data: "#{rootPath}/data/"
 
 src =
   styles: "#{basePath.src}sass/"
   scripts: "#{basePath.src}scripts/"
   sketch: "#{basePath.src}sketch/"
   pages: "#{basePath.src}view/pages/"
-  data: "#{basePath.src}view/data/"
   images: "#{basePath.src}images/"
   svgSprites: "#{basePath.src}svg_sprites/"
 

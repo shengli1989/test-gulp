@@ -15,7 +15,7 @@ gulp.task 'compile:sass', (cb) ->
     cssnano:
       discardComments: { removeAll: true }
     preprocess:
-      context: { env: argv.env }
+      context: { ENV: 'dev' }
     sass:
       precision: 10
       includePaths: [
@@ -45,7 +45,7 @@ gulp.task 'compile:sass', (cb) ->
     .pipe $.postcss(options.postcss)
     .pipe $.if(!argv.minify, $.sourcemaps.write('.'))
     .pipe $.if(argv.minify, $.cssnano(options.cssnano))
-    .pipe $.if(argv.archive, $.replace(/(url\(['|"]?)(\/)/g, "$1..$2"))
+    .pipe $.if(argv.relative, $.replace(/(url\(['|"]?)(\/)/g, "$1..$2"))
     .pipe gulp.dest(dest.styles)
     .pipe $.filter(['**/*.css'])
     .pipe bs.stream()

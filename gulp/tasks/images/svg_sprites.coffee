@@ -1,4 +1,4 @@
-{ src, dest } = G
+{ basePath, src, dest } = G
 
 config =
   mode:
@@ -7,11 +7,11 @@ config =
       sprite: 'sprite.svg'
       render:
         demo:
-          template: './gulp/libs/images/svg-sprites/demo.jade.handlebars'
+          template: "#{basePath.libs}images/svg-sprites/demo.jade.handlebars"
         inline:
-          template: './gulp/libs/images/svg-sprites/inline.jade.handlebars'
+          template: "#{basePath.libs}images/svg-sprites/inline.jade.handlebars"
         mixin:
-          template: './gulp/libs/images/svg-sprites/mixin.jade.handlebars'
+          template: "#{basePath.libs}images/svg-sprites/mixin.jade.handlebars"
   svg:
     xmlDeclaration: false
     doctypeDeclaration: false
