@@ -5,7 +5,7 @@ $mq-responsive: true
 $mq-breakpoints: map-get($theme, breakpoints)
 
 @if $env == 'dev'
-  $mq-show-breakpoints: (phone, tablet, desktop, wide)
+  $mq-show-breakpoints: (phone, tablet, desktop, wide) !global
 
 // edit breakpoints in /config/shared.yaml
 // to see more options -> https://github.com/sass-mq/sass-mq
