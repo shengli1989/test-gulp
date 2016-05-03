@@ -1,4 +1,0 @@
-mixin icon(name)
-  svg(class="svg svg-#{name}")
-    - var path = isArchive ? '#' + name : sprites_url(name)
-    use(xlink:href=path)
